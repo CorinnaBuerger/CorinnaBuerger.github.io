@@ -78,7 +78,7 @@ def table(func1, func2, n):
     it_time = 0
     rec_time = 0
     case = "BOTH_FINE"
-    for i in range(n):
+    for i in range(1, n+1):
         if rec_time < 20.0:
             rec_time = time_it(1, func1, i)
         else:
@@ -99,7 +99,7 @@ def table(func1, func2, n):
             print("{:>4} | ---too long--- | ---too long---".format(i, rec_time, it_time))
 {% endhighlight %}
 
-We start with printing the headers of our three-columned table: n, recursion and iteration. For each number < n we now print the time the two functions take for returning the result.
+We start with printing the headers of our three-columned table: n, recursion and iteration. For each number n we now print the time the two functions take for returning the result.
 At some point it takes really long returning the result, especially when using recursion, so we say: if the time `rec_time` or `it_time` reached more than 20 seconds, for the next call we just print `"--- too long ---"`.
 
 {% highlight python %}
