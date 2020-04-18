@@ -140,6 +140,24 @@ table(fib_recursion, fib_iteration, 50)
 And again, we can see that recursion is way slower than iteration.
 So if you want to get a certain number F<sub>n</sub>, I would highly recommend using iteration!
 
+{% if page.comments != false %}
+
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = '{{ page.url | absolute_url }}';
+      this.page.identifier = '{{ page.url | absolute_url }}';
+    };
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://{{ site.disqus.shortname }}.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+{% endif %}
+
 {% if page.comments %}
   {% include disqus_comments.html %}
 {% endif %}
