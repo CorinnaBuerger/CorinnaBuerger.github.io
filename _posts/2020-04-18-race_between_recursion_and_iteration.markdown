@@ -3,6 +3,7 @@ layout: post
 title:  "Race between Recursion and Iteration"
 date:   2020-04-18 18:02:40 +0200
 categories: jekyll update
+comments: true
 ---
 
 
@@ -110,7 +111,7 @@ def table(func1, func2, n):
 {% endhighlight %}
 
 We start with printing the headers of our three-columned table: `n`, `recursion` and `iteration`. For each number < n we now print the time the two functions take for returning the result.
-At some point this takes really long, especially when using recursion, so we say: if the time `rec_time` or `it_time` reached more than 20 seconds, for the next call we just print `"--- too long ---"`.
+At some point this takes really long, especially when using recursion, so we say: if the time `rec_time` or `it_time` reaches more than 20 seconds, for the next call we just print `"--- too long ---"`.
 
 {% highlight python %}
 table(fib_recursion, fib_iteration, 50)
@@ -139,7 +140,6 @@ table(fib_recursion, fib_iteration, 50)
 And again, we can see that recursion is way slower than iteration.
 So if you want to get a certain number F<sub>n</sub>, I would highly recommend using iteration!
 
-
-
-[corinnabuerger-gh]:   https://github.com/corinnabuerger
-
+{% if page.comments %}
+  {% include disqus_comments.html %}
+{% endif %}
