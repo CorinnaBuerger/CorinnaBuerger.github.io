@@ -7,7 +7,7 @@ categories: jekyll update
 
 
 Today I will compare two methods for getting a certain Fibonacci number F<sub>n</sub>: Recursion and Iteration.
-Both methods work fine but one of them is highly faster than the other one.
+Both methods work fine but one of them is much faster than the other one.
 
 At first, let's take a look at the iterative function `fib_iteration(n)`:
 
