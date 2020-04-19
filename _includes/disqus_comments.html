@@ -1,20 +1,28 @@
-{%- if page.comments != false and jekyll.environment == "production" -%}
-
+{% if page.comments %}
   <div id="disqus_thread"></div>
   <script>
     var disqus_config = function () {
-      this.page.url = '{{ page.url | absolute_url }}';
-      this.page.identifier = '{{ page.url | absolute_url }}';
+		/* if we're on localhost, detect it and manually patch	
+		* URL into the page.url and page.identifier variables
+		*/
+		if (window.location.href.match(/localhost/) !== "") {
+			const actual_base = "https://corinnabuerger.github.io";
+			const actual_url = actual_base + '{{ page.url }}';
+			this.page.url = this.page.identifier = actual_url;
+		} else {
+			this.page.url = '{{ page.url | absolute_url }}';
+			this.page.identifier = '{{ page.url | absolute_url }}';
+		}
     };
 
     (function() {
       var d = document, s = d.createElement('script');
 
-      s.src = 'https://{{ site.disqus.shortname }}.disqus.com/embed.js';
+      s.src = 'https://{{site.disqus.shortname}}.disqus.com/embed.js';
 
       s.setAttribute('data-timestamp', +new Date());
       (d.head || d.body).appendChild(s);
     })();
   </script>
   <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-{%- endif -%}
+{% endif %}
