@@ -7,6 +7,10 @@
     {{content}}
     {% include footer.html %}
     {% include scripts.html %}
+
+    {% if jekyll.environment == 'production' %}
+    {% include analytics.html %}
+    {% endif %}
 </body>
 
 </html>
