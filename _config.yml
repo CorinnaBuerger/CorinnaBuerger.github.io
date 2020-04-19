@@ -3,6 +3,7 @@ name: Python Implementations
 description: "A blog and a portfolio"
 author: "Corinna Buerger"
 title: "Python Implementations"
+subtitle: "A Programmer's Website"
 permalink: pretty
 baseurl: /
 url: https://corinnabuerger.github.io
