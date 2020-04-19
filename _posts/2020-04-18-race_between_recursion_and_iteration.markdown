@@ -113,7 +113,7 @@ def table(func1, func2, n):
 We start with printing the headers of our three-columned table: `n`, `recursion` and `iteration`. For each number < n we now print the time the two functions take for returning the result.
 At some point this takes really long, especially when using recursion, so we say: if the time `rec_time` or `it_time` reaches more than 20 seconds, for the next call we just print `"--- too long ---"`.
 
-{% highlight python %}
+```python
 table(fib_recursion, fib_iteration, 50)
 
 ###############
@@ -134,7 +134,7 @@ table(fib_recursion, fib_iteration, 50)
 #               ........
 #  49 | ---too long--- |     0.00002395
 #  50 | ---too long--- |     0.00002480
-{% endhighlight %}
+```
 
 
 And again, we can see that recursion is way slower than iteration.
