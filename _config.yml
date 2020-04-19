@@ -2,7 +2,7 @@
 name: Coco's Website
 description: "A blog and a portfolio"
 author: "Corinna Buerger"
-title: "Coco's Website"
+title: "Python Implementations"
 permalink: pretty
 baseurl: /
 url: https://corinnabuerger.github.io
