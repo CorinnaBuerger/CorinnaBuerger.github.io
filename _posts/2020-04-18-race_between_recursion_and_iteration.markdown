@@ -53,7 +53,7 @@ The recursive function surely is shorter and appears more elegant than the itera
 
 For this, we create another function called `time_it` which takes three arguments: `times` for defining how often a certain function should be called, the `function`that should be tested and the `argument` the tested function should take.
 
-{% highlight python %}
+```python
 from time import perf_counter
 
 def time_it(times, function, argument):
@@ -62,13 +62,13 @@ def time_it(times, function, argument):
         function(argument)
     end = perf_counter()
     return end - start
-{% endhighlight %}
+```
 
 For this function we make use of the method `perf_counter` from the `time` package. It returns the time since the beginning in seconds as a float. This helps us measuring the time our function takes to be called a certain number of `times`.
 
 Let's try it out!
 
-{% highlight python %}
+```python
 time_it(1, fib_iteration, 10)
 time_it(1, fib_recursion, 10)
 
@@ -77,12 +77,12 @@ time_it(1, fib_recursion, 10)
 
 # 1.4540000000007325e-05
 # 7.270099999999446e-05
-{% endhighlight %}
+```
 
 As we can see, the iterative way seems to be faster than the recursive one!
 Now let's compare our two methods more closely by printing a table containing the time both methods take to give us a certain number F<sub>n</sub>.
 
-{% highlight python %}
+```python
 def table(func1, func2, n):
     print("{:>4} | {:>14} | {:>14}".format("n", "recursion", "iteration"))
     print("-----|----------------|---------------")
@@ -108,7 +108,7 @@ def table(func1, func2, n):
 
         if case == "BOTH_TOO_LONG":
             print("{:>4} | ---too long--- | ---too long---".format(i, rec_time, it_time))
-{% endhighlight %}
+```
 
 We start with printing the headers of our three-columned table: `n`, `recursion` and `iteration`. For each number < n we now print the time the two functions take for returning the result.
 At some point this takes really long, especially when using recursion, so we say: if the time `rec_time` or `it_time` reaches more than 20 seconds, for the next call we just print `"--- too long ---"`.
