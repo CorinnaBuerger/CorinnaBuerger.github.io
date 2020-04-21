@@ -6,7 +6,7 @@ categories: jekyll update
 comments: true
 ---
 
-In  my [previous post](https://corinnabuerger.github.io/jekyll/update/2020/04/18/race_between_recursion_and_iteration/) we compaired iteration and recursion concerning their needed time to get a certain Fibonacci number F<sub>n</sub>. For this, we created a function `time_it` that simply calls each function a certain number of `times` and returns the taken time by calculating the difference between the time right before and after the function gets called. You may say, it "wrappes" the called function.
+In my previous post we compaired iteration and recursion concerning their needed time to get a certain Fibonacci number F<sub>n</sub>. For this, we created a function `time_it` that simply calls each function a certain number of `times` and returns the taken time by calculating the difference between the time right before and after the function gets called. You may say, it "wrappes" the called function.
 
 ```python
 from time import perf_counter
