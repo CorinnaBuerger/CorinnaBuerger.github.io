@@ -6,4 +6,4 @@ categories: jekyll update
 comments: true
 ---
 
-# Coming soon
+Coming soon

@@ -6,7 +6,7 @@ categories: jekyll update
 comments: true
 ---
 
-In my previous post we compaired iteration and recursion concerning their needed time to get a certain Fibonacci number F<sub>n</sub>. For this, we created a function `time_it` that simply calls each function a certain number of `times` and returns the taken time by calculating the difference between the time right before and after the function gets called. You may say, it "wrappes" the called function.
+In my previous post we compaired iteration and recursion regarding their time required to get a certain Fibonacci number F<sub>n</sub>. To do this, we created a function `time_it` that simply calls each function a certain number of `times` and returns the time it took by calculating the difference between the time right before and after the function got called. You may say, it "wrappes" the called function.
 
 ```python
 from time import perf_counter
@@ -19,13 +19,13 @@ def time_it(times, fn, arg):
     return end - start
 ```
 
-The structure of this function resembles a concept in Python called **Decorators**.
+The structure of this function resembles a concept in Python called **decorators**.
 
-In Python you can use Decorators to modify or "decorate" your functions. For beginners, it might not be that easy to understand how they are used in the right way, especially when you want to pass some additional arguments to your decorator.
+In Python you can use decorators to modify or "decorate" your functions. For beginners, it might not be that easy to understand how they are used in the right way, especially when you want to pass some additional arguments to your decorator. Thus, in this post we will discuss this concept on a beginner level.
 
 # Basic Structure
 
-Let's start with the basic structure of a decorator and the decorated function without adding any additional arguments to the decorator!
+Let's start with the basic structure of a decorator --- without adding any additional arguments to the decorator for now!
 
 ```python
 def my_decorator(fn):
@@ -52,11 +52,11 @@ simple_function(1, 2)
 # 3
 ```
 
-The decorator itself just takes exactly one argument: the function `fn` that should be decorated. 
-In the decorator's body we define another function: the so-called `wrapper`. It contains the actual modification or decoration and takes the **same arguments as the decorated function**. After modification, the `wrapper` usually returns the function call of the decorated or modified function, but it can potentially return any value. We will come to this later on.
+The decorator itself takes exactly one argument: the function `fn` that should be decorated. 
+In thebody of the decorator we define another function: the so-called `wrapper`. It contains the actual modification or decoration and takes the **same arguments as the decorated function**. After modification, the `wrapper` usually returns the function call of the decorated or modified function, but it can potentially return any value. We will come to this later on.
 At the end, the decorator returns the `wrapper`.
 
-For me in the beginning, it was not instantly clear why we need this additional `wrapper` in the decorator. Why can't we just pass `fn_arg1` and `fn_arg2` in the actual decorator and let the decorator return the call of the decorated function?
+In the beginning, it was not instantly clear to me why we need this additional `wrapper` in the decorator. Why can't we just pass `fn_arg1` and `fn_arg2` in the actual decorator and let the decorator return the call of the decorated function?
 To answer this question, you need to know what's behind this `@decorator` right above the definition of `simple_function`.
 
 ```python
@@ -74,17 +74,17 @@ def simple_function(fn_arg1, fn_arg2):
 decorated_function = my_decorator(simple_function) # simple_function gets decorated
 ```
 
-By adding `@decorator` above the defintion of the `simple_function`, we call the decorator once with `simple_function` as an argument and - importantly - this is the only time the decorator gets executed. Since it does't get executed everytime you call the `decorated_function`, there is no way of passing it any function arguments. Decorators can indeed take arguments, but they can only be defined once, when the `simple_function` gets decorated. We will get back to this later.
-In contrast to this, the `wrapper` gets executed everytime the `decorated_function` gets called and can accept arguments that are passed to it by the `decorated_function`. For this, you have to make sure that the `wrapper` takes the same parameters as the `decorated_function`. In case you don't know yet how many arguments will be passed to the `wrapper`, you can use [*args and **kwargs](https://corinnabuerger.github.io/jekyll/update/2020/04/21/args_and_kwargs/). 
+By adding `@decorator` above the defintion of the `simple_function`, we call the decorator once with `simple_function` as an argument and --- importantly --- this is the only time the decorator gets executed. Since it doesn't get executed every time you call the `decorated_function`, there is no way of passing it any function arguments. Decorators can indeed take arguments, but they can only be defined once, when the `simple_function` gets decorated. We will get back to this later.
+In contrast, the `wrapper` gets executed everytime the `decorated_function` gets called and can accept arguments that are passed to it by the `decorated_function`. For this, you have to make sure that the `wrapper` takes the same parameters as the `decorated_function`. In case you don't know yet how many arguments will be passed to the `wrapper`, you can use [*args and **kwargs](https://corinnabuerger.github.io/jekyll/update/2020/04/21/args_and_kwargs/). 
 
-Maybe you have trouble unterstanding why the `wrapper` gets executed everytime the `decorated_function` gets called. Remember: When we call `my_decorator` in our example it returns `my_wrapper`:
+Maybe you have trouble unterstanding why the `wrapper` gets executed every time the `decorated_function` gets called. Remember: when we call `my_decorator` in our example, it returns `my_wrapper`:
 
 ```python
 my_wrapper = my_decorator(simple_function)
 ```
 
 Since `my_wrapper` is defined locally to `my_decorator`, it is not accessible from outside the decorator --- unless you return it.
-By assigning `my_decorator(simple_function)` to `decorated_function` as we did above, you practically assign `my_wrapper` to `decorated_function`. So everytime you call `decorated_function`, you call `my_wrapper`.
+By assigning `my_decorator(simple_function)` to `decorated_function` as we did above, you basically assign `my_wrapper` to `decorated_function`. So every time you call `decorated_function`, you call `my_wrapper`.
 
 # Time it!
 
@@ -100,7 +100,7 @@ def time_it(fn):
     return time_wrapper
 ```
 
-As you can see, the `wrapper` does not necessarily have to return the function call. It can also execute the decorated function and return another value like in our example the time it took to execute `fn`. Let's see what happens when we decorate our two functions `fib_iteration` and `fib_recursion` and call them afterwards:
+As you can see, the `wrapper` does not necessarily have to return the function call. It can also execute the decorated function and return another value as it does in our example. There, it returns the time it took to execute `fn`. Let's see what happens when we decorate our two functions `fib_iteration` and `fib_recursion` and call them afterwards:
 
 ```python
 @time_it
@@ -226,7 +226,7 @@ print(fib_recursion(8))
 ```
 
 Great!
-Now if you want to change the number of `times` the measured functions should be executed, you only have to give decorator_maker_with_args another argument and it will be passed to the decorator.
+Now, if you want to change the number of `times` the measured functions should be executed, you only have to give decorator_maker_with_args another argument and it will be passed to the decorator.
 
 
 
