@@ -6,7 +6,7 @@ categories: jekyll update
 comments: true
 ---
 
-If you have read my previous post about compairing iteration and recursion for getting a certain Fibonacci number F<sub>n</sub>, you may have noticed that I timed these two functions by creating a function called `time_it` that simply calls each function and checks the time that has passed since the beginning right before and after each function gets called a certain number of `times`. You may say, it "wrappes" the called function by doing something before and after the call.
+If you have read my [previous post](https://corinnabuerger.github.io/jekyll/update/2020/04/18/race_between_recursion_and_iteration/) about compairing iteration and recursion for getting a certain Fibonacci number F<sub>n</sub>, you may have noticed that I timed these two functions by creating a function called `time_it` that simply calls each function and checks the time that has passed since the beginning right before and after each function gets called a certain number of `times`. You may say, it "wrappes" the called function by doing something before and after the call.
 
 {% highlight python %}
 from time import perf_counter
@@ -77,7 +77,7 @@ decorated_function = my_decorator(simple_function) # simple_function gets decora
 {% endhighlight %}
 
 By adding `@decorator` above the defintion of the `simple_function`, we call the decorator once with `simple_function` as an argument and importantly this is the only time the decorator gets executed. Since it does't get executed everytime you call the `decorated_function`, there is no way of passing it any function arguments. Decorators can indeed take arguments, but they can only be defined once, when the `simple_function` gets decorated. We will get back to this later.
-In contrast to this, the `wrapper` gets executed everytime the `decorated_function` gets called and can accept arguments that are passed to it by the `decorated_function`. For this, you have to make sure that the `wrapper` takes the same parameters as the `decorated_function`. In case you don't know yet how many arguments will be passed to the `wrapper`, you can use [`*args` and `**kwargs`](TODO_ACTUAL_LINK). 
+In contrast to this, the `wrapper` gets executed everytime the `decorated_function` gets called and can accept arguments that are passed to it by the `decorated_function`. For this, you have to make sure that the `wrapper` takes the same parameters as the `decorated_function`. In case you don't know yet how many arguments will be passed to the `wrapper`, you can use [*args and **kwargs](https://corinnabuerger.github.io/jekyll/update/2020/04/21/args_and_kwargs/). 
 
 Maybe you have trouble unterstanding why the `wrapper` gets executed everytime the `decorated_function` gets called. Remember: When we call `my_decorator` in our example it returns `my_wrapper`:
 
