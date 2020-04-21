@@ -28,7 +28,7 @@ In Python you can use Decorators to modify or "decorate" your functions. For beg
 So let's start with the basic structure of a decorator and the decorated function without adding any additional arguments to the decorator!
 Right below you can see a brief overlook of how it should look like when we are done. After this, I will explain its content step by step.
 
-{% highlight python %}
+```python
 def my_decorator(fn):
     def my_wrapper(fn_arg1, fn_arg2):
         print("I modify the called function")
@@ -39,11 +39,11 @@ def my_decorator(fn):
 def simple_function(fn_arg1, fn_arg2):
     print("I get decorated")
     return fn_arg1 + fn_arg2
-{% endhighlight %}
+```
 
 In our example, we decorate `simple_function` with the string "I modify the called function". So when we execute it, we get:
 
-{% highlight python %}
+```python
 simple_function(1, 2)
 
 ###############
@@ -51,14 +51,14 @@ simple_function(1, 2)
 # I modify the called function
 # I get decorated
 # 3
-{% endhighlight %}
+```
 
 Now that you got an idea of how it should look like, I will start with the structure of the decorator.
 The decorator itself just takes exactly one argument: the `function`, that should be decorated. 
 In the decorator's body we define another function: the so-called `wrapper`. It contains the actual modification or decoration and takes the **same arguments as the decorated function**. After modification, the `wrapper` usually `returns` the function call of the decorated or modified function. But it does not necessarily need to return the function call. I will get to this later on.
 At the end, the decorator `returns` the `wrapper`.
 
-For me in the beginning, it was not instantly clear why we need this additional `wrapper` in the decorator. Why can't we just pass `fn_arg1` and `fn_arg2` in the actual decorator and just let the decorator `return` the call of the decorated function?
+For me in the beginning, it was not instantly clear why we need this additional `wrapper` in the decorator. Why can't we just pass `fn_arg1` and `fn_arg2` in the actual decorator and just let the decorator return the call of the decorated function?
 To answer this question, you need to know what's behind this `@decorator` right above the definition of `simple_function`.
 
 {% highlight python %}
@@ -77,15 +77,15 @@ decorated_function = my_decorator(simple_function) # simple_function gets decora
 {% endhighlight %}
 
 By adding `@decorator` above the defintion of the `simple_function`, we call the decorator once with `simple_function` as an argument and importantly this is the only time the decorator gets executed. Since it does't get executed everytime you call the `decorated_function`, there is no way of passing it any function arguments. Decorators can indeed take arguments, but they can only be defined once, when the `simple_function` gets decorated. We will get back to this later.
-In contrast to this, the `wrapper` gets executed everytime the `decorated_function` gets called and can accept arguments that are passed to it by the `decorated_function`. For this, you have to make sure that the `wrapper` takes the same parameters as the `decorated_function`. In case you don't know yet how many arguments will be passed to the `wrapper`, you can use `*args and **kwargs`. 
+In contrast to this, the `wrapper` gets executed everytime the `decorated_function` gets called and can accept arguments that are passed to it by the `decorated_function`. For this, you have to make sure that the `wrapper` takes the same parameters as the `decorated_function`. In case you don't know yet how many arguments will be passed to the `wrapper`, you can use [`*args` and `**kwargs`](TODO_ACTUAL_LINK). 
 
-Maybe you have trouble unterstanding why the `wrapper` gets executed everytime the `decorated_function` gets called. Remember: When we call `my_decorator` in our example it `returns` the `my_wrapper`:
+Maybe you have trouble unterstanding why the `wrapper` gets executed everytime the `decorated_function` gets called. Remember: When we call `my_decorator` in our example it returns `my_wrapper`:
 
 {% highlight python %}
 my_wrapper = my_decorator(simple_function)
 {% endhighlight %}
 
-Since `my_wrapper` is only defined in `my_decorator` it is not automatically accessible from outside the decorator unless you `return` it.
+Since `my_wrapper` is defined locally to `my_decorator`, it is not accessible from outside the decorator --- unless you return it.
 By assigning `my_decorator(simple_function)` to `decorated_function` as we did above, you practically assign `my_wrapper` to `decorated_function`. So everytime you call `decorated_function`, you call `my_wrapper`.
 
 # Time it!
@@ -102,7 +102,7 @@ def time_it(fn):
     return time_wrapper
 {% endhighlight %}
 
-As you can see, the `wrapper` does not necessarily have to `return` the function call. It can also execute the decorated function and `return` another value like in our example the time it took to execute `fn`. Let's see what happens when we decorate our two functions `fib_iteration` and `fib_recursion` and call them afterwards:
+As you can see, the `wrapper` does not necessarily have to return the function call. It can also execute the decorated function and return another value like in our example the time it took to execute `fn`. Let's see what happens when we decorate our two functions `fib_iteration` and `fib_recursion` and call them afterwards:
 
 {% highlight python %}
 @time_it
