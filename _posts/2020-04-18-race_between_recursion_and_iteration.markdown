@@ -138,4 +138,10 @@ table(fib_recursion, fib_iteration, 50)
 
 
 And again, we can see that recursion is way slower than iteration.
+Below, the difference between these two methods become even more visible:
+
+![Recursion and Iteration]({{ corinnabuerger.github.io }}/assets/recursion_iteration_plot.png)
+
+![Iteration]({{ corinnabuerger.github.io }}/assets/iteration_plot.png)
+
 So if you want to get a certain number F<sub>n</sub>, I would highly recommend using iteration!
