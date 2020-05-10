@@ -78,4 +78,6 @@ self.v = VolumeBar(settings.get("start_volume_bar"),
 
 `"start_volume_bar"` and `"max_pensize"` are defined in the settings, which were already shown above. `self.s` is an instance of `turtle.Screen()`, which is a subclass of TurtleScreen. It is created in the class constructor as well. The screen is needed to call methods like for example `onkey` or `ondrag`, which will be used further below, but also for disabling the tracer like we already did.
 
+The picture below shows how it looks like, when we choose a lightblue pencolor with a pink fillcolor, a turtle shape and increased the pensize.
 
+![Changing pencolor, fillcolor, shape and pensize]({{ corinnabuerger.github.io }}/assets/selections.PNG)
