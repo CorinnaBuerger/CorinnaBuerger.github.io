@@ -6,6 +6,7 @@ categories: jekyll update
 comments: true
 ---
 
+Do you think Python Turtle is just for kids in order to introduce the Python language? Do you just use it for messing around? False!
 In this post, I will introduce the drawing program **TurtlePaint**. It was created using the Turtle module of Python 3.8. 
 It allows you to draw beautiful pictures by intuitively clicking on the screen, moving the turtle around with `h`, `j`, `k`, `l` or by simply dragging it with your mouse. Choose between different pencolors, fillcolors, pensizes and turtle shapes to get a perfect result! It is great for creating simple shapes or small drawings, but also to let your creativity run free!
 
@@ -149,7 +150,7 @@ def register_callbacks(self):
     self.s.listen()
 ```
 
-Although the methods that are used above are slightly different, they all work in a very similar way: as a first argument, they take the function that shall be called when a certain key, which is specified in the second argument, gets pressed/released.
+Although the methods that are used are slightly different, they all work in a very similar way: as a first argument, they take the function that shall be called when a certain key, which is specified in the second argument, gets pressed/released.
 
 `onclick`: The turtle will go to the clicked position on the turtle itself (so it just moves slightly away from its current center). `1` as a second argument represents the left mouse key.
 
@@ -165,4 +166,5 @@ By clicking `?` you can open an additional window showing all the possible instr
 
 ![Instructions]({{ corinnabuerger.github.io }}/assets/instructions.PNG)
 
+Now, that I've showed you all the possibilities with TurtlePaint, feel free to try it out! Just click [here] (https://github.com/CorinnaBuerger/Turtle-Paint) for the github repository. Have fun!
 
