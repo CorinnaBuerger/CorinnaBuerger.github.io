@@ -166,5 +166,5 @@ By clicking `?` you can open an additional window showing all the possible instr
 
 ![Instructions]({{ corinnabuerger.github.io }}/assets/instructions.PNG)
 
-Now, that I've showed you all the possibilities with TurtlePaint, feel free to try it out! Just click [here](https://github.com/CorinnaBuerger/Turtle-Paint) for the github repository. Have fun!
+Now, that I've showed you all the possibilities with TurtlePaint, feel free to try it out! Just click <a href="https://github.com/CorinnaBuerger/Turtle-Paint" target="_blank"> here</a> for the github repository. Have fun!
 
