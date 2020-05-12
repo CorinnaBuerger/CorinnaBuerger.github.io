@@ -162,9 +162,9 @@ Although the methods that are used are slightly different, they all work in a ve
 
 `onkeypress`: The specified function will be called right after you pressed down a certain key and will be called over and over again as long as the key is down.
 
-By clicking `?` you can open an additional window showing all the possible instructions.
+By clicking `?`, you can open an additional window showing all the possible instructions.
 
 ![Instructions]({{ corinnabuerger.github.io }}/assets/instructions.PNG)
 
-Now, that I've showed you all the possibilities with TurtlePaint, feel free to try it out! Just click <a href="https://github.com/CorinnaBuerger/Turtle-Paint" target="_blank"> here</a> for the github repository. Have fun!
+Now that I've shown you all the possibilities with TurtlePaint, feel free to try it out! Just click <a href="https://github.com/CorinnaBuerger/Turtle-Paint" target="_blank"> here</a> for the github repository. Have fun!
 
