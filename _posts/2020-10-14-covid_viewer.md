@@ -6,4 +6,4 @@ categories: jekyll update
 comments: true
 ---
 
-{% include bokeh_zim_test.html %}
+{% include test.html %}
