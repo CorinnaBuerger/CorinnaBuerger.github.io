@@ -12,6 +12,8 @@ The gray bars in the background represent worldwide data. The selected country w
 
 The first plot gives information about the daily death cases, the second one about the total ones.
 
+The countries in the selection menu are sorted by total death cases in a descending order.
+
 {% include bokeh.html %}
 
 
