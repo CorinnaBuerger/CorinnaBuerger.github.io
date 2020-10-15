@@ -12,7 +12,6 @@ The gray bars in the background represent worldwide data. The selected country w
 
 # Confirmed Infections 
 
-
 The first plot gives information about the daily confirmed infections, the second one about the total ones.
 The countries in the selection menu are sorted by total infections in a descending order.
 
