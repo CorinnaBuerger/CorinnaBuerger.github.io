@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> *args and **kwargs |  Python Implementations</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Corinna Buerger">
+    <meta name="description" content="A blog and a portfolio">
+    <meta name="google-site-verification" content="0Gn_dKXbiAVrD1a3RkOh52-_0BAByivvOS4hgT0h_Rw" />
+    <link rel="shortcut icon" type="image/png" href="http://via.placeholder.com/128x128">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Crimson+Text">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.2/css/bulma.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <nav class="nav">
+    <div class="container">
+        <div class="nav-left">
+            <a class="nav-item" href="/">
+                <span class="icon">
+                    <i class="fa fa-home"></i>
+                </span>
+            </a>
+        </div>
+
+        <div class="nav-center">
+            <a class="nav-item" target="_blank" href="https://www.github.com/CorinnaBuerger/">
+                <span class="icon">
+                    <i class="fa fa-github"></i>
+                </span>
+            </a>
+            <a class="nav-item" target="_blank" href="https://www.twitter.com/coco_beatle/">
+                <span class="icon">
+                    <i class="fa fa-twitter"></i>
+                </span>
+            </a>
+        </div>
+
+        <span class="nav-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+        </span>
+
+        <div class="nav-right nav-menu">
+            
+            <a class="nav-item" href="/portfolio/">
+                <span>Portfolio</span>
+            </a>
+            
+            <a class="nav-item" href="/about/">
+                <span>About</span>
+            </a>
+            
+        </div>
+
+</nav>
+    <section class="section">
+    <div class="container">
+        <div class="heading has-text-centered">
+            <p class="title is-3">*args and **kwargs</p>
+            <p class="subtitle is-6"><span class="tag is-white"><small>April 21, 2020</small></span></p>
+        </div>
+        <br>
+        <div class="columns is-multiline">
+
+            <div class="column is-half is-offset-one-quarter">
+                <div class="content">
+                    <p>Have you ever wondered what’s behind the mysterious expressions <code class="highlighter-rouge">*args</code> and <code class="highlighter-rouge">**kwargs</code>?
+Usually they are used as function parameters, when you don’t know the amount of given arguments yet. Let’s say you want to define a function <code class="highlighter-rouge">mean</code> that returns the mean of all the numbers, that are passed to it. Surely, you want to create a function that can be applied for all amounts of numbers. In this case, you can use <code class="highlighter-rouge">*args</code> as a parameter.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">mean</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">sum_up</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+        <span class="n">sum_up</span> <span class="o">=</span> <span class="n">sum_up</span> <span class="o">+</span> <span class="n">num</span> 
+    <span class="n">mean</span> <span class="o">=</span> <span class="n">sum_up</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">mean</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">mean</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">mean</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">mean</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="c1">################
+# Output:
+# 2.0
+# 75.0
+# 6.25
+</span></code></pre></div></div>
+<p>But what does <code class="highlighter-rouge">*args</code> exactly mean?
+<code class="highlighter-rouge">*</code> is an unpacking operator. It can be used to unpack every iterable object.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">my_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s">"hello"</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">my_tuple</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="o">*</span><span class="n">my_tuple</span><span class="p">)</span>
+
+<span class="c1">###############
+# Output:
+# (1, 2, 'hello', 4)
+# 1 2 hello 4
+</span></code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">my_list</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="o">*</span><span class="n">my_list</span><span class="p">)</span>
+
+<span class="c1">###############
+# Output:
+# [1, 2, 3, 4]
+# 1 2 3 4
+</span></code></pre></div></div>
+<p>Using <code class="highlighter-rouge">*</code> before the parameter <code class="highlighter-rouge">args</code> creates a tuple that now can contain any amount of any objects (integers, strings,…). <code class="highlighter-rouge">args</code> stands for positional <strong>arg</strong>ument<strong>s</strong>, but can be replaced by any other name. In our example function <code class="highlighter-rouge">mean</code>, we could also name it <code class="highlighter-rouge">*integers</code>. This lets us know, that no strings should be passed to the function since it would raise an error.</p>
+
+<p>Until now, we just talked about <code class="highlighter-rouge">*args</code>. But when do we use <code class="highlighter-rouge">**kwargs</code>?
+<code class="highlighter-rouge">**</code> is also an unpacking operator, but it can only be used for dictionaries, which contain <strong>k</strong>ey<strong>w</strong>ord <strong>arg</strong>ument<strong>s</strong>. Again, <code class="highlighter-rouge">kwargs</code> can be replaced by any other name.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">meal</span><span class="p">(</span><span class="o">**</span><span class="n">recipe</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">ingredient_type</span> <span class="ow">in</span> <span class="n">recipe</span><span class="p">:</span> <span class="c1"># returns the key
+</span>        <span class="k">print</span><span class="p">(</span><span class="n">ingredient_type</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">ingredient</span> <span class="ow">in</span> <span class="n">recipe</span><span class="p">.</span><span class="n">values</span><span class="p">():</span> <span class="c1"># returns the value
+</span>        <span class="k">print</span><span class="p">(</span><span class="n">ingredient</span><span class="p">)</span>
+
+<span class="n">meal</span><span class="p">(</span><span class="n">main_ingredient</span> <span class="o">=</span> <span class="s">"noodles"</span><span class="p">,</span> <span class="n">sauce</span> <span class="o">=</span> <span class="s">"tomatoe sauce"</span><span class="p">,</span> <span class="n">topping</span> <span class="o">=</span> <span class="s">"cheese"</span><span class="p">,</span> <span class="n">dessert</span> <span class="o">=</span> <span class="s">"ice cream"</span><span class="p">)</span>
+
+<span class="c1">###############
+# Output:
+# main_ingredient
+# sauce
+# topping
+# dessert
+# noodles
+# tomatoe sauce
+# cheese
+# ice cream
+</span></code></pre></div></div>
+<p><code class="highlighter-rouge">**</code> successfully unpacked our dictionary and made our keys and values accessible!</p>
+
+
+		    
+			
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+		/* if we're on localhost, detect it and manually patch	
+		* URL into the page.url and page.identifier variables
+		*/
+		if (window.location.href.match(/localhost/) !== "") {
+			const actual_base = "https://corinnabuerger.github.io";
+			const actual_url = actual_base + '/jekyll/update/2020/04/21/args_and_kwargs/';
+			this.page.url = this.page.identifier = actual_url;
+		} else {
+			this.page.url = 'http://localhost:4000/jekyll/update/2020/04/21/args_and_kwargs/';
+			this.page.identifier = 'http://localhost:4000/jekyll/update/2020/04/21/args_and_kwargs/';
+		}
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://recursion-iteration.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+		    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <footer class="page-footer">
+    <div class="container">
+        <div class="columns">
+            <div class="column is-4">
+                <div class="content">
+                    <p>
+                        <small>
+                            <span>Powered by</span>
+                            <a target="_blank" href="http://jekyllrb.com/">Jekyll</a>
+                            <span> / Styled using </span>
+                            <a target="_blank" href="http://bulma.io/">Bulma</a>
+                        </small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="/js/script.js"></script>
+
+    
+</body>
+
+</html>

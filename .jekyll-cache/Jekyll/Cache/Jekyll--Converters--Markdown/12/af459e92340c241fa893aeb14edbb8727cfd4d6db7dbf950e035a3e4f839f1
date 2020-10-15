@@ -1,0 +1,4 @@
+I"<p>Do you think Python Turtle is just for kids in order to introduce the Python language? Do you just use it for messing around? False!
+In this post, I will introduce the drawing program <strong>TurtlePaint</strong>. It was created using the Turtle module of Python 3.8. 
+It allows you to draw beautiful pictures by intuitively clicking on the screen, moving the turtle around with <code class="highlighter-rouge">h</code>, <code class="highlighter-rouge">j</code>, <code class="highlighter-rouge">k</code>, <code class="highlighter-rouge">l</code> or by simply dragging it with your mouse. Choose between different pencolors, fillcolors, pensizes and turtle shapes to get a perfect result! It is great for creating simple shapes or small drawings, but also to let your creativity run free!</p>
+:ET

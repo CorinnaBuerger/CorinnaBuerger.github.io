@@ -1,0 +1,208 @@
+I"�W<p>In my previous post we compaired iteration and recursion regarding their time required to get a certain Fibonacci number F<sub>n</sub>. To do this, we created a function <code class="highlighter-rouge">time_it</code> that simply calls each function a certain number of <code class="highlighter-rouge">times</code> and returns the time it took by calculating the difference between the time right before and after the function got called. You may say, it “wrappes” the called function.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">perf_counter</span>
+
+<span class="k">def</span> <span class="nf">time_it</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">fn</span><span class="p">,</span> <span class="n">arg</span><span class="p">):</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">perf_counter</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">times</span><span class="p">):</span>
+        <span class="n">fn</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="n">perf_counter</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span>
+</code></pre></div></div>
+
+<p>The structure of this function resembles a concept in Python called <strong>decorators</strong>.</p>
+
+<p>In Python you can use decorators to modify or “decorate” your functions. For beginners, it might not be that easy to understand how they are used in the right way, especially when you want to pass some additional arguments to your decorator. Thus, in this post we will discuss this concept on a beginner level.</p>
+
+<h1 id="basic-structure">Basic Structure</h1>
+
+<p>Let’s start with the basic structure of a decorator — without adding any additional arguments to the decorator for now!</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">my_decorator</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">my_wrapper</span><span class="p">(</span><span class="n">fn_arg1</span><span class="p">,</span> <span class="n">fn_arg2</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"I modify the called function"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">function</span><span class="p">(</span><span class="n">fn_arg1</span><span class="p">,</span> <span class="n">fn_arg2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">my_wrapper</span>
+
+<span class="o">@</span><span class="n">my_decorator</span>
+<span class="k">def</span> <span class="nf">simple_function</span><span class="p">(</span><span class="n">fn_arg1</span><span class="p">,</span> <span class="n">fn_arg2</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"I get decorated"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fn_arg1</span> <span class="o">+</span> <span class="n">fn_arg2</span>
+</code></pre></div></div>
+
+<p>In our example, we decorate <code class="highlighter-rouge">simple_function</code> with the string “I modify the called function”. So when we call our <code class="highlighter-rouge">simple_function</code>, we get:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">simple_function</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1">###############
+# Output:
+# I modify the called function
+# I get decorated
+# 3
+</span></code></pre></div></div>
+
+<p>The decorator itself takes exactly one argument: the function <code class="highlighter-rouge">fn</code> that should be decorated. 
+In thebody of the decorator we define another function: the so-called <code class="highlighter-rouge">wrapper</code>. It contains the actual modification or decoration and takes the <strong>same arguments as the decorated function</strong>. After modification, the <code class="highlighter-rouge">wrapper</code> usually returns the function call of the decorated or modified function, but it can potentially return any value. We will come to this later on.
+At the end, the decorator returns the <code class="highlighter-rouge">wrapper</code>.</p>
+
+<p>In the beginning, it was not instantly clear to me why we need this additional <code class="highlighter-rouge">wrapper</code> in the decorator. Why can’t we just pass <code class="highlighter-rouge">fn_arg1</code> and <code class="highlighter-rouge">fn_arg2</code> in the actual decorator and let the decorator return the call of the decorated function?
+To answer this question, you need to know what’s behind this <code class="highlighter-rouge">@decorator</code> right above the definition of <code class="highlighter-rouge">simple_function</code>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">my_decorator</span>
+<span class="k">def</span> <span class="nf">simple_function</span><span class="p">(</span><span class="n">fn_arg1</span><span class="p">,</span> <span class="n">fn_arg2</span><span class="p">):</span> <span class="c1"># simple_function gets decorated
+</span>    <span class="k">pass</span>
+</code></pre></div></div>
+
+<p>is equal to</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">simple_function</span><span class="p">(</span><span class="n">fn_arg1</span><span class="p">,</span> <span class="n">fn_arg2</span><span class="p">):</span> 
+    <span class="k">pass</span>
+
+<span class="n">decorated_function</span> <span class="o">=</span> <span class="n">my_decorator</span><span class="p">(</span><span class="n">simple_function</span><span class="p">)</span> <span class="c1"># simple_function gets decorated
+</span></code></pre></div></div>
+
+<p>By adding <code class="highlighter-rouge">@decorator</code> above the defintion of the <code class="highlighter-rouge">simple_function</code>, we call the decorator once with <code class="highlighter-rouge">simple_function</code> as an argument and — importantly — this is the only time the decorator gets executed. Since it doesn’t get executed every time you call the <code class="highlighter-rouge">decorated_function</code>, there is no way of passing it any function arguments. Decorators can indeed take arguments, but they can only be defined once, when the <code class="highlighter-rouge">simple_function</code> gets decorated. We will get back to this later.
+In contrast, the <code class="highlighter-rouge">wrapper</code> gets executed everytime the <code class="highlighter-rouge">decorated_function</code> gets called and can accept arguments that are passed to it by the <code class="highlighter-rouge">decorated_function</code>. For this, you have to make sure that the <code class="highlighter-rouge">wrapper</code> takes the same parameters as the <code class="highlighter-rouge">decorated_function</code>. In case you don’t know yet how many arguments will be passed to the <code class="highlighter-rouge">wrapper</code>, you can use <a href="https://corinnabuerger.github.io/jekyll/update/2020/04/21/args_and_kwargs/">*args and **kwargs</a>.</p>
+
+<p>Maybe you have trouble unterstanding why the <code class="highlighter-rouge">wrapper</code> gets executed every time the <code class="highlighter-rouge">decorated_function</code> gets called. Remember: when we call <code class="highlighter-rouge">my_decorator</code> in our example, it returns <code class="highlighter-rouge">my_wrapper</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">my_wrapper</span> <span class="o">=</span> <span class="n">my_decorator</span><span class="p">(</span><span class="n">simple_function</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Since <code class="highlighter-rouge">my_wrapper</code> is defined locally to <code class="highlighter-rouge">my_decorator</code>, it is not accessible from outside the decorator — unless you return it.
+By assigning <code class="highlighter-rouge">my_decorator(simple_function)</code> to <code class="highlighter-rouge">decorated_function</code> as we did above, you basically assign <code class="highlighter-rouge">my_wrapper</code> to <code class="highlighter-rouge">decorated_function</code>. So every time you call <code class="highlighter-rouge">decorated_function</code>, you call <code class="highlighter-rouge">my_wrapper</code>.</p>
+
+<h1 id="time-it">Time it!</h1>
+
+<p>Now that you know about the basic structure of a decorator, let’s take a look at our <code class="highlighter-rouge">time_it</code> function as a decorator!</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">time_it</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">time_wrapper</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">perf_counter</span><span class="p">()</span>
+        <span class="n">fn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="n">perf_counter</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span>
+    <span class="k">return</span> <span class="n">time_wrapper</span>
+</code></pre></div></div>
+
+<p>As you can see, the <code class="highlighter-rouge">wrapper</code> does not necessarily have to return the function call. It can also execute the decorated function and return another value as it does in our example. There, it returns the time it took to execute <code class="highlighter-rouge">fn</code>. Let’s see what happens when we decorate our two functions <code class="highlighter-rouge">fib_iteration</code> and <code class="highlighter-rouge">fib_recursion</code> and call them afterwards:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">time_it</span>
+<span class="k">def</span> <span class="nf">fib_iteration</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">last</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">next_num</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">next_num</span> <span class="o">=</span> <span class="n">current</span> <span class="o">+</span> <span class="n">last</span>
+            <span class="n">last</span> <span class="o">=</span> <span class="n">current</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">next_num</span>
+        <span class="k">return</span> <span class="n">current</span>
+
+<span class="o">@</span><span class="n">time_it</span>
+<span class="k">def</span> <span class="nf">fib_recursion</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">fib_recursion</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fib_recursion</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">fib_iteration</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span> 
+<span class="k">print</span><span class="p">(</span><span class="n">fib_recursion</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>This does <code class="highlighter-rouge">print</code> the time it takes both functions to return F<sub>8</sub>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">###############
+# Output:
+# 1.3258000000002101e-05
+# 0.00010263700000000264
+</span></code></pre></div></div>
+
+<p>It worked! Let’s take it to another level!</p>
+
+<h1 id="decorators-with-arguments">Decorators with arguments</h1>
+
+<p>Our original <code class="highlighter-rouge">time_it</code> function in our Fibonacci example took an additional argument: a certain number of <code class="highlighter-rouge">times</code> the measured function should be executed. But how can we pass arguments to a decorator when it only takes one argument: the function <code class="highlighter-rouge">fn</code>? Well, at first sight, this may not seem that easy but we will get through this. Just stay with me!
+For this, we need a <code class="highlighter-rouge">decorator_maker</code>. It gets executed only once when a decorator is created and returns a new decorator.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">my_decorator_maker</span><span class="p">(</span><span class="n">dec_arg1</span><span class="p">,</span> <span class="n">dec_arg2</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">my_decorator_with_args</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">my_wrapper</span><span class="p">(</span><span class="n">fn_arg1</span><span class="p">,</span> <span class="n">fn_arg2</span><span class="p">):</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"I modify the function"</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">fn</span><span class="p">(</span><span class="n">fn_arg1</span><span class="p">,</span> <span class="n">fn_arg2</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">my_wrapper</span>
+    <span class="k">return</span> <span class="n">my_decorator_with_args</span>
+</code></pre></div></div>
+
+<p>Let’s create a new decorator that can accept additional arguments:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">new_decorator_with_args</span> <span class="o">=</span> <span class="n">my_decorator_maker</span><span class="p">(</span><span class="n">dec_arg1</span><span class="p">,</span> <span class="n">dec_arg2</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>And now we decorate a simple function with this new shiny decorator!</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">decorated_function</span> <span class="o">=</span> <span class="n">new_decorator_with_args</span><span class="p">(</span><span class="n">simple_function</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>is the same as</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">decorated_function</span> <span class="o">=</span> <span class="n">my_decorator_maker</span><span class="p">(</span><span class="n">dec_arg1</span><span class="p">,</span> <span class="n">dec_arg2</span><span class="p">)(</span><span class="n">simple_function</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>is the same as</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">my_decorator_maker</span><span class="p">(</span><span class="n">dec_arg1</span><span class="p">,</span> <span class="n">dec_arg2</span><span class="p">)</span> <span class="c1"># == new_decorator_with_args
+</span><span class="k">def</span> <span class="nf">simple_function</span><span class="p">(</span><span class="n">fn_arg1</span><span class="p">,</span> <span class="n">fn_arg2</span><span class="p">):</span>
+    <span class="k">pass</span>
+</code></pre></div></div>
+
+<p>Let’s try this out by measuring the time the functions <code class="highlighter-rouge">fib_iteration</code> and <code class="highlighter-rouge">fib_recursion</code> take to give us F<sub>8</sub> 10 <code class="highlighter-rouge">times</code>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">perf_counter</span>
+
+<span class="k">def</span> <span class="nf">decorator_maker_with_args</span><span class="p">(</span><span class="n">times</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">time_it_with_arguments</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">time_wrapper</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">start</span> <span class="o">=</span> <span class="n">perf_counter</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">times</span><span class="p">):</span>
+                <span class="n">fn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+            <span class="n">end</span> <span class="o">=</span> <span class="n">perf_counter</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span>
+        <span class="k">return</span> <span class="n">time_wrapper</span>
+    <span class="k">return</span> <span class="n">time_it_with_arguments</span>
+
+<span class="o">@</span><span class="n">decorator_maker_with_args</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fib_iteration</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">last</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">next_num</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">next_num</span> <span class="o">=</span> <span class="n">current</span> <span class="o">+</span> <span class="n">last</span>
+            <span class="n">last</span> <span class="o">=</span> <span class="n">current</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">next_num</span>
+        <span class="k">return</span> <span class="n">current</span>
+
+<span class="o">@</span><span class="n">decorator_maker_with_args</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">fib_recursion</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">fib_recursion</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fib_recursion</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">fib_iteration</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">fib_recursion</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span>
+
+<span class="c1">###############
+# Output:
+# 6.756900000000343e-05
+# 21.540842741000002
+</span>
+</code></pre></div></div>
+
+<p>Great!
+Now, if you want to change the number of <code class="highlighter-rouge">times</code> the measured functions should be executed, you only have to give decorator_maker_with_args another argument and it will be passed to the decorator.</p>
+
+:ET

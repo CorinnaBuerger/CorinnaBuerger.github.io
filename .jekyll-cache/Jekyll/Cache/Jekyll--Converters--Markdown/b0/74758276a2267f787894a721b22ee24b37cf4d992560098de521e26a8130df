@@ -1,0 +1,68 @@
+I"�<p>Have you ever wondered what’s behind the mysterious expressions <code class="highlighter-rouge">*args</code> and <code class="highlighter-rouge">**kwargs</code>?
+Usually they are used as function parameters, when you don’t know the amount of given arguments yet. Let’s say you want to define a function <code class="highlighter-rouge">mean</code> that returns the mean of all the numbers, that are passed to it. Surely, you want to create a function that can be applied for all amounts of numbers. In this case, you can use <code class="highlighter-rouge">*args</code> as a parameter.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">mean</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">sum_up</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+        <span class="n">sum_up</span> <span class="o">=</span> <span class="n">sum_up</span> <span class="o">+</span> <span class="n">num</span> 
+    <span class="n">mean</span> <span class="o">=</span> <span class="n">sum_up</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">mean</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">mean</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">mean</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">mean</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="c1">################
+# Output:
+# 2.0
+# 75.0
+# 6.25
+</span></code></pre></div></div>
+<p>But what does <code class="highlighter-rouge">*args</code> exactly mean?
+<code class="highlighter-rouge">*</code> is an unpacking operator. It can be used to unpack every iterable object.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">my_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s">"hello"</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">my_tuple</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="o">*</span><span class="n">my_tuple</span><span class="p">)</span>
+
+<span class="c1">###############
+# Output:
+# (1, 2, 'hello', 4)
+# 1 2 hello 4
+</span></code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">my_list</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="o">*</span><span class="n">my_list</span><span class="p">)</span>
+
+<span class="c1">###############
+# Output:
+# [1, 2, 3, 4]
+# 1 2 3 4
+</span></code></pre></div></div>
+<p>Using <code class="highlighter-rouge">*</code> before the parameter <code class="highlighter-rouge">args</code> creates a tuple that now can contain any amount of any objects (integers, strings,…). <code class="highlighter-rouge">args</code> stands for positional <strong>arg</strong>ument<strong>s</strong>, but can be replaced by any other name. In our example function <code class="highlighter-rouge">mean</code>, we could also name it <code class="highlighter-rouge">*integers</code>. This lets us know, that no strings should be passed to the function since it would raise an error.</p>
+
+<p>Until now, we just talked about <code class="highlighter-rouge">*args</code>. But when do we use <code class="highlighter-rouge">**kwargs</code>?
+<code class="highlighter-rouge">**</code> is also an unpacking operator, but it can only be used for dictionaries, which contain <strong>k</strong>ey<strong>w</strong>ord <strong>arg</strong>ument<strong>s</strong>. Again, <code class="highlighter-rouge">kwargs</code> can be replaced by any other name.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">meal</span><span class="p">(</span><span class="o">**</span><span class="n">recipe</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">ingredient_type</span> <span class="ow">in</span> <span class="n">recipe</span><span class="p">:</span> <span class="c1"># returns the key
+</span>        <span class="k">print</span><span class="p">(</span><span class="n">ingredient_type</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">ingredient</span> <span class="ow">in</span> <span class="n">recipe</span><span class="p">.</span><span class="n">values</span><span class="p">():</span> <span class="c1"># returns the value
+</span>        <span class="k">print</span><span class="p">(</span><span class="n">ingredient</span><span class="p">)</span>
+
+<span class="n">meal</span><span class="p">(</span><span class="n">main_ingredient</span> <span class="o">=</span> <span class="s">"noodles"</span><span class="p">,</span> <span class="n">sauce</span> <span class="o">=</span> <span class="s">"tomatoe sauce"</span><span class="p">,</span> <span class="n">topping</span> <span class="o">=</span> <span class="s">"cheese"</span><span class="p">,</span> <span class="n">dessert</span> <span class="o">=</span> <span class="s">"ice cream"</span><span class="p">)</span>
+
+<span class="c1">###############
+# Output:
+# main_ingredient
+# sauce
+# topping
+# dessert
+# noodles
+# tomatoe sauce
+# cheese
+# ice cream
+</span></code></pre></div></div>
+<p><code class="highlighter-rouge">**</code> successfully unpacked our dictionary and made our keys and values accessible!</p>
+
+:ET

@@ -1,0 +1,107 @@
+I"�<section class="hero is-primary is-small">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <p class="title is-1">
+                My Python Adventures
+            </p>
+            <p class="subtitle is-4">
+	    <em>A Programmer's Website</em>
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column is-half is-offset-one-quarter">
+
+                
+                <div class="box">
+                    <article class="media">
+                        <div class="media-content">
+                            <div class="content">
+                                <a href="/jekyll/update/2020/10/14/covid_viewer/">
+                                    <p class="title is-2">Covid Viewer <span class="tag is-white is-pulled-right"><small>October 14, 2020</small></span></p>
+				    <p class="subtitle"><small><script>
+  function resizeIframe(obj) {
+    obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+  }
+</script>
+
+<iframe src="" class="iframe" scrolling="no" frameborder="0" onload="resizeIframe(this)" width="100%">
+</iframe>
+
+</small></p>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="box">
+                    <article class="media">
+                        <div class="media-content">
+                            <div class="content">
+                                <a href="/jekyll/update/2020/05/09/turtle_paint/">
+                                    <p class="title is-2">Turtle-Paint <span class="tag is-white is-pulled-right"><small>May 09, 2020</small></span></p>
+				    <p class="subtitle"><small>Do you think Python Turtle is just for kids in order to introduce the Python language? Do you just use it for messing around? False!
+In this post, I will introduce the drawing program <strong>TurtlePaint</strong>. It was created using the Turtle module of Python 3.8. 
+It allows you to draw beautiful pictures by intuitively clicking on the screen, moving the turtle around with <code class="highlighter-rouge">h</code>, <code class="highlighter-rouge">j</code>, <code class="highlighter-rouge">k</code>, <code class="highlighter-rouge">l</code> or by simply dragging it with your mouse. Choose between different pencolors, fillcolors, pensizes and turtle shapes to get a perfect result! It is great for creating simple shapes or small drawings, but also to let your creativity run free!
+</small></p>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="box">
+                    <article class="media">
+                        <div class="media-content">
+                            <div class="content">
+                                <a href="/jekyll/update/2020/04/21/args_and_kwargs/">
+                                    <p class="title is-2">*args and **kwargs <span class="tag is-white is-pulled-right"><small>April 21, 2020</small></span></p>
+				    <p class="subtitle"><small>Have you ever wondered what’s behind the mysterious expressions <code class="highlighter-rouge">*args</code> and <code class="highlighter-rouge">**kwargs</code>?
+Usually they are used as function parameters, when you don’t know the amount of given arguments yet. Let’s say you want to define a function <code class="highlighter-rouge">mean</code> that returns the mean of all the numbers, that are passed to it. Surely, you want to create a function that can be applied for all amounts of numbers. In this case, you can use <code class="highlighter-rouge">*args</code> as a parameter.
+</small></p>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="box">
+                    <article class="media">
+                        <div class="media-content">
+                            <div class="content">
+                                <a href="/jekyll/update/2020/04/20/python_decorators/">
+                                    <p class="title is-2">Decorators in Python <span class="tag is-white is-pulled-right"><small>April 20, 2020</small></span></p>
+				    <p class="subtitle"><small>In my previous post we compaired iteration and recursion regarding their time required to get a certain Fibonacci number F<sub>n</sub>. To do this, we created a function <code class="highlighter-rouge">time_it</code> that simply calls each function a certain number of <code class="highlighter-rouge">times</code> and returns the time it took by calculating the difference between the time right before and after the function got called. You may say, it “wrappes” the called function.
+</small></p>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="box">
+                    <article class="media">
+                        <div class="media-content">
+                            <div class="content">
+                                <a href="/jekyll/update/2020/04/18/race_between_recursion_and_iteration/">
+                                    <p class="title is-2">Race between Recursion and Iteration <span class="tag is-white is-pulled-right"><small>April 18, 2020</small></span></p>
+				    <p class="subtitle"><small>Today I will compare two methods for getting a certain Fibonacci number F<sub>n</sub>: Recursion and Iteration.
+Both methods work fine but one of them is much faster than the other one.
+</small></p>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                
+
+            </div>
+        </div>
+    </div>
+</section>
+:ET

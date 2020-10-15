@@ -1,0 +1,154 @@
+I"�a<p>Do you think Python Turtle is just for kids in order to introduce the Python language? Do you just use it for messing around? False!
+In this post, I will introduce the drawing program <strong>TurtlePaint</strong>. It was created using the Turtle module of Python 3.8. 
+It allows you to draw beautiful pictures by intuitively clicking on the screen, moving the turtle around with <code class="highlighter-rouge">h</code>, <code class="highlighter-rouge">j</code>, <code class="highlighter-rouge">k</code>, <code class="highlighter-rouge">l</code> or by simply dragging it with your mouse. Choose between different pencolors, fillcolors, pensizes and turtle shapes to get a perfect result! It is great for creating simple shapes or small drawings, but also to let your creativity run free!</p>
+
+<p>When the program gets started, an instance of the class <code class="highlighter-rouge">TurtlePaint</code> gets created taking <code class="highlighter-rouge">settings</code> as an argument:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">tpaint</span> <span class="o">=</span> <span class="n">TurtlePaint</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+    <span class="n">tpaint</span><span class="p">.</span><span class="n">mainloop</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>Calling the <code class="highlighter-rouge">mainloop</code> method prevents our program from closing immediatly after execution.
+Passing the settings as an arguments allows us to specify things like e.g. the maximal pensize or the position of the volume bar indexing our current pensize. Since the settings are not part of the class, they must be specified before instantiating TurtlePaint. In our program, the following settings are used:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">settings</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"start_volume_bar"</span><span class="p">:</span> <span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">280</span><span class="p">),</span>
+    <span class="s">"start_penup"</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">300</span><span class="p">),</span>
+    <span class="s">"start_pendown"</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">280</span><span class="p">),</span>
+    <span class="s">"max_pensize"</span><span class="p">:</span> <span class="mi">21</span><span class="p">,</span>
+    <span class="s">"pensize_stepsize"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s">"title"</span><span class="p">:</span> <span class="s">"Turtle Paint v0.0.2"</span><span class="p">,</span>
+    <span class="s">"screen_dims"</span><span class="p">:</span> <span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">),</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>This gets us the following result:</p>
+
+<p><img src="/assets/start.PNG" alt="Starting TurtlePaint" /></p>
+
+<p>Now let’s take a look at how the toolbar at the top gets created. For this we used some hidden “helper turtles”. By disabling the <code class="highlighter-rouge">tracer</code> (<code class="highlighter-rouge">Screen.tracer(False)</code>) their drawings are shown immediatly after starting the program without displaying it step by step like usual. They get instantiated in the constructor of the TurtlePaint class.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">TurtlePaint</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">settings</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">t1</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>  <span class="c1"># main turtle
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">t2</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>  <span class="c1"># draws color bar
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">t3</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>  <span class="c1"># selects current color
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">t4</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>  <span class="c1"># draws tool bar border
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">t5</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>  <span class="c1"># makes shape stamps
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">t6</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>  <span class="c1"># selects current shape
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">t7</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>  <span class="c1"># refers to instructions
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">t8</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>  <span class="c1"># selects current fillcolor
+</span>
+        <span class="p">...</span>
+</code></pre></div></div>
+<p>After the toolbar is created, some of these turtles are not needed anymore and just stay —hidden — at the position where they finished their painting. Whereas other, the “selector turtles” need to refresh their drawing everytime the user makes some changes, like for example choosing a different pencolor. These dynamic conditions are easily solved by using the <code class="highlighter-rouge">clear</code> method, that clears everything a certain turtle has drawn so far. Now it can jump to the next area for selection. Since for all these steps <code class="highlighter-rouge">tracer</code> is disabled, it happens without any delay.</p>
+
+<p>For two objects of the toolbar, namely the string toggler and the volume bar, we wrote additional classes. This allows us to also use them outside of TurtlePaint. So if we need a volume bar or want to toggle between two states in another program, we can simply import them.</p>
+
+<p>At first, I will show you the constructor of our string toggler.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">StringToggler</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos_first</span><span class="p">,</span> <span class="n">pos_second</span><span class="p">,</span> <span class="n">str_1</span><span class="p">,</span> <span class="n">str_2</span><span class="p">,</span> <span class="n">screen</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">write_turtle</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">non_active_color</span> <span class="o">=</span> <span class="s">"light gray"</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">active_color</span> <span class="o">=</span> <span class="s">"black"</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">active_str</span> <span class="o">=</span> <span class="p">(</span><span class="n">str_1</span><span class="p">,</span> <span class="n">pos_first</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">passive_str</span> <span class="o">=</span> <span class="p">(</span><span class="n">str_2</span><span class="p">,</span> <span class="n">pos_second</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">font</span> <span class="o">=</span> <span class="s">'Courier'</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="s">'italic'</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">write_turtle</span><span class="p">.</span><span class="n">hideturtle</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">s</span> <span class="o">=</span> <span class="n">screen</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">write</span><span class="p">()</span>
+</code></pre></div></div>
+<p>You can simply create an instance of StringToggler by passing it two strings, between which you want to toggle, and the positions on the screen, where they should be displayed.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="bp">self</span><span class="p">.</span><span class="n">toggler</span> <span class="o">=</span> <span class="n">StringToggler</span><span class="p">(</span><span class="n">settings</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"start_pendown"</span><span class="p">),</span>
+                             <span class="n">settings</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"start_penup"</span><span class="p">),</span>
+                             <span class="s">"pen down"</span><span class="p">,</span> <span class="s">"pen up"</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">s</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The class has two methods: <code class="highlighter-rouge">self.write</code> and <code class="highlighter-rouge">self.toggle</code>. <code class="highlighter-rouge">self.write</code> displays the active string in black and the passive one in light gray. Since we call it in the constructor, this will automatically happen after you create an instance of this class. In this case <code class="highlighter-rouge">str_1</code> will be the active string. <code class="highlighter-rouge">self.toggle</code> simply switches the active and the passive string and calls <code class="highlighter-rouge">self.write</code> again in order to update the display.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">toggle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="c1"># toggle strings
+</span>    <span class="bp">self</span><span class="p">.</span><span class="n">active_str</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">passive_str</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">passive_str</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">active_str</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">write</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>In our program, <code class="highlighter-rouge">self.toggler.toggle()</code> gets called everytime the user puts the pen up or down.</p>
+
+<p>Now let’s take a look at the constructor of our volume bar:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">VolumeBar</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">maximum</span><span class="p">,</span> <span class="n">screen</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">bar</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">fill</span> <span class="o">=</span> <span class="n">Turtle</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">bar_hypo</span> <span class="o">=</span> <span class="mi">100</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">pencolor</span> <span class="o">=</span> <span class="s">"black"</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">pensize</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">pos</span> <span class="o">=</span> <span class="n">pos</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">maximum</span> <span class="o">=</span> <span class="n">maximum</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">s</span> <span class="o">=</span> <span class="n">screen</span>
+</code></pre></div></div>
+<p>It instantiates two turtles: one for drawing the static border of our bar and one to dynamically fill it everytime the measurand changes. Like with the “selector turtles” mentioned above, we simply clear everything the “filling turtle” has drawn so far and refill the volume bar.
+For our TurtlePaint, the pensize volume bar gets instantiated in the class constructor.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">TurtlePaint</span><span class="p">():</span>
+<span class="p">...</span>
+
+<span class="bp">self</span><span class="p">.</span><span class="n">v</span> <span class="o">=</span> <span class="n">VolumeBar</span><span class="p">(</span><span class="n">settings</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"start_volume_bar"</span><span class="p">),</span>
+                           <span class="n">settings</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"max_pensize"</span><span class="p">),</span> <span class="bp">self</span><span class="p">.</span><span class="n">s</span><span class="p">)</span>
+<span class="p">...</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">"start_volume_bar"</code> and <code class="highlighter-rouge">"max_pensize"</code> are defined in the settings, which were already shown above. <code class="highlighter-rouge">self.s</code> is an instance of <code class="highlighter-rouge">turtle.Screen()</code>, which is a subclass of TurtleScreen. It is created in the class constructor as well. The screen is needed to call methods like for example <code class="highlighter-rouge">onkey</code> or <code class="highlighter-rouge">ondrag</code>, which will be used further below, but also for disabling the tracer like we already did in the beginning.</p>
+
+<p>The picture below shows how it looks like, when we choose a lightblue pencolor with a pink fillcolor, a turtle shape and have increased the pensize.</p>
+
+<p><img src="/assets/selections.PNG" alt="Changing pencolor, fillcolor, shape and pensize" /></p>
+
+<p>Now that we looked at how all these user made changes are displayed in the toolbar, I will show you how the user can actually make all these changes!
+For handling user input, we wrote a method <code class="highlighter-rouge">register_callbacks</code>, which is called right in the beginning.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">register_callbacks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">t1</span><span class="p">.</span><span class="n">onclick</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">t1</span><span class="p">.</span><span class="n">goto</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">s</span><span class="p">.</span><span class="n">onscreenclick</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">go_to</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">t1</span><span class="p">.</span><span class="n">ondrag</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">go_to</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">s</span><span class="p">.</span><span class="n">onkey</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">pen_change</span><span class="p">,</span> <span class="s">"p"</span><span class="p">)</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">s</span><span class="p">.</span><span class="n">onkey</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">change_color</span><span class="p">,</span> <span class="s">"space"</span><span class="p">)</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">s</span><span class="p">.</span><span class="n">onkey</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">change_shape</span><span class="p">,</span> <span class="s">"t"</span><span class="p">)</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">s</span><span class="p">.</span><span class="n">onkey</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">increase_pensize</span><span class="p">,</span> <span class="s">"Up"</span><span class="p">)</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">s</span><span class="p">.</span><span class="n">onkey</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">decrease_pensize</span><span class="p">,</span> <span class="s">"Down"</span><span class="p">)</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">s</span><span class="p">.</span><span class="n">onkey</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">screen_exit_handler</span><span class="p">,</span> <span class="s">"Escape"</span><span class="p">)</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">s</span><span class="p">.</span><span class="n">onkey</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">screen_save_handler</span><span class="p">,</span> <span class="s">"s"</span><span class="p">)</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">s</span><span class="p">.</span><span class="n">onkey</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">t1</span><span class="p">.</span><span class="n">begin_fill</span><span class="p">,</span> <span class="s">"b"</span><span class="p">)</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">s</span><span class="p">.</span><span class="n">onkey</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">t1</span><span class="p">.</span><span class="n">end_fill</span><span class="p">,</span> <span class="s">"e"</span><span class="p">)</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">s</span><span class="p">.</span><span class="n">onkey</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">change_fillcolor</span><span class="p">,</span> <span class="s">"f"</span><span class="p">)</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">s</span><span class="p">.</span><span class="n">onkey</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">clear_all</span><span class="p">,</span> <span class="s">"c"</span><span class="p">)</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">s</span><span class="p">.</span><span class="n">onkeypress</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">undo_drawings</span><span class="p">,</span> <span class="s">"u"</span><span class="p">)</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">s</span><span class="p">.</span><span class="n">onkeypress</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">move_down</span><span class="p">,</span> <span class="s">"j"</span><span class="p">)</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">s</span><span class="p">.</span><span class="n">onkeypress</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">move_up</span><span class="p">,</span> <span class="s">"k"</span><span class="p">)</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">s</span><span class="p">.</span><span class="n">onkeypress</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">turn_left</span><span class="p">,</span> <span class="s">"h"</span><span class="p">)</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">s</span><span class="p">.</span><span class="n">onkeypress</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">turn_right</span><span class="p">,</span> <span class="s">"l"</span><span class="p">)</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">s</span><span class="p">.</span><span class="n">onkey</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">show_instructions</span><span class="p">,</span> <span class="s">"?"</span><span class="p">)</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">s</span><span class="p">.</span><span class="n">listen</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>Although the methods that are used are slightly different, they all work in a very similar way: as a first argument, they take the function that shall be called when a certain key, which is specified in the second argument, gets pressed/released.</p>
+
+<p><code class="highlighter-rouge">onclick</code>: The turtle will go to the clicked position on the turtle itself (so it just moves slightly away from its current center). <code class="highlighter-rouge">1</code> as a second argument represents the left mouse key.</p>
+
+<p><code class="highlighter-rouge">onscreenclick</code>: The turtle will go to the clicked position on the screen.</p>
+
+<p><code class="highlighter-rouge">ondrag</code>: After pressing the left mouse key down while the cursor is being on the turtle, it will follow your mouse movements until you release the click.</p>
+
+<p><code class="highlighter-rouge">onkey</code>: The specified function will be called — once — right after you pressed down a certain key.</p>
+
+<p><code class="highlighter-rouge">onkeypress</code>: The specified function will be called right after you pressed down a certain key and will be called over and over again as long as the key is down.</p>
+
+<p>By clicking <code class="highlighter-rouge">?</code>, you can open an additional window showing all the possible instructions.</p>
+
+<p><img src="/assets/instructions.PNG" alt="Instructions" /></p>
+
+<p>Now that I’ve shown you all the possibilities with TurtlePaint, feel free to try it out! Just click <a href="https://github.com/CorinnaBuerger/Turtle-Paint" target="_blank"> here</a> for the github repository. Have fun!</p>
+
+:ET

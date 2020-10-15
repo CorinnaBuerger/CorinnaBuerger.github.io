@@ -1,0 +1,2 @@
+I"�<p>In my previous post we compaired iteration and recursion regarding their time required to get a certain Fibonacci number F<sub>n</sub>. To do this, we created a function <code class="highlighter-rouge">time_it</code> that simply calls each function a certain number of <code class="highlighter-rouge">times</code> and returns the time it took by calculating the difference between the time right before and after the function got called. You may say, it “wrappes” the called function.</p>
+:ET

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Race between Recursion and Iteration |  Python Implementations</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Corinna Buerger">
+    <meta name="description" content="A blog and a portfolio">
+    <meta name="google-site-verification" content="0Gn_dKXbiAVrD1a3RkOh52-_0BAByivvOS4hgT0h_Rw" />
+    <link rel="shortcut icon" type="image/png" href="http://via.placeholder.com/128x128">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Crimson+Text">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.2/css/bulma.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <nav class="nav">
+    <div class="container">
+        <div class="nav-left">
+            <a class="nav-item" href="/">
+                <span class="icon">
+                    <i class="fa fa-home"></i>
+                </span>
+            </a>
+        </div>
+
+        <div class="nav-center">
+            <a class="nav-item" target="_blank" href="https://www.github.com/CorinnaBuerger/">
+                <span class="icon">
+                    <i class="fa fa-github"></i>
+                </span>
+            </a>
+            <a class="nav-item" target="_blank" href="https://www.twitter.com/coco_beatle/">
+                <span class="icon">
+                    <i class="fa fa-twitter"></i>
+                </span>
+            </a>
+        </div>
+
+        <span class="nav-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+        </span>
+
+        <div class="nav-right nav-menu">
+            
+            <a class="nav-item" href="/portfolio/">
+                <span>Portfolio</span>
+            </a>
+            
+            <a class="nav-item" href="/about/">
+                <span>About</span>
+            </a>
+            
+        </div>
+
+</nav>
+    <section class="section">
+    <div class="container">
+        <div class="heading has-text-centered">
+            <p class="title is-3">Race between Recursion and Iteration</p>
+            <p class="subtitle is-6"><span class="tag is-white"><small>April 18, 2020</small></span></p>
+        </div>
+        <br>
+        <div class="columns is-multiline">
+
+            <div class="column is-half is-offset-one-quarter">
+                <div class="content">
+                    <p>Today I will compare two methods for getting a certain Fibonacci number F<sub>n</sub>: Recursion and Iteration.
+Both methods work fine but one of them is much faster than the other one.</p>
+
+<h1 id="iteration">Iteration</h1>
+
+<p>At first, let’s take a look at the iterative function <code class="highlighter-rouge">fib_iteration(n)</code>:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">fib_iteration</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">last</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">next_num</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">next_num</span> <span class="o">=</span> <span class="n">current</span> <span class="o">+</span> <span class="n">last</span>
+            <span class="n">last</span> <span class="o">=</span> <span class="n">current</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">next_num</span>
+        <span class="k">return</span> <span class="n">current</span></code></pre></figure>
+
+<p>The sequence starts with F<sub>1</sub> = 1, so for this case we can just <code class="highlighter-rouge">return 1</code> without calculating anything.
+For all other cases, we start at the first position F<sub>1</sub> and sum up the current position with the last one. We do this <code class="highlighter-rouge">n-1</code> times and then <code class="highlighter-rouge">return current</code>.
+And that’s all, we are done so far!</p>
+
+<h1 id="recursion">Recursion</h1>
+
+<p>So let’s go on with the recursive function <code class="highlighter-rouge">fib_recursion(n)</code>:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">fib_recursion</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">fib_recursion</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fib_recursion</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span></code></pre></figure>
+
+<p>We already know that both F<sub>1</sub> and F<sub>2</sub> = 1, so for these cases we can just <code class="highlighter-rouge">return 1</code>.
+For all other cases we simply sum up the function calls for the two previous ones and <code class="highlighter-rouge">return</code> the result.</p>
+
+<p>The recursive function surely is shorter and appears more elegant than the iterative one. But which one is faster?</p>
+
+<h1 id="time-it">Time it!</h1>
+
+<p>For this, we create another function called <code class="highlighter-rouge">time_it</code> which takes three arguments: <code class="highlighter-rouge">times</code> for defining how often a certain function should be called, the <code class="highlighter-rouge">function</code>that should be tested and the <code class="highlighter-rouge">argument</code> the tested function should take.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">perf_counter</span>
+
+<span class="k">def</span> <span class="nf">time_it</span><span class="p">(</span><span class="n">times</span><span class="p">,</span> <span class="n">function</span><span class="p">,</span> <span class="n">argument</span><span class="p">):</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">perf_counter</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">times</span><span class="p">):</span>
+        <span class="n">function</span><span class="p">(</span><span class="n">argument</span><span class="p">)</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="n">perf_counter</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span>
+</code></pre></div></div>
+
+<p>For this function we make use of the method <code class="highlighter-rouge">perf_counter</code> from the <code class="highlighter-rouge">time</code> package. It returns the time since the beginning in seconds as a float. This helps us measuring the time our function takes to be called a certain number of <code class="highlighter-rouge">times</code>.</p>
+
+<p>Let’s try it out!</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">time_it</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">fib_iteration</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">time_it</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">fib_recursion</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="c1">###############
+# Output:
+</span>
+<span class="c1"># 1.4540000000007325e-05
+# 7.270099999999446e-05
+</span></code></pre></div></div>
+
+<p>As we can see, the iterative way seems to be faster than the recursive one!
+Now let’s compare our two methods more closely by printing a table containing the time both methods take to give us a certain number F<sub>n</sub>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">table</span><span class="p">(</span><span class="n">func1</span><span class="p">,</span> <span class="n">func2</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"{:&gt;4} | {:&gt;14} | {:&gt;14}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="s">"n"</span><span class="p">,</span> <span class="s">"recursion"</span><span class="p">,</span> <span class="s">"iteration"</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"-----|----------------|---------------"</span><span class="p">)</span>
+    <span class="n">it_time</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">rec_time</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">case</span> <span class="o">=</span> <span class="s">"BOTH_FINE"</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">rec_time</span> <span class="o">&lt;</span> <span class="mf">20.0</span><span class="p">:</span>
+            <span class="n">rec_time</span> <span class="o">=</span> <span class="n">time_it</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">func1</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">case</span> <span class="o">=</span> <span class="s">"REC_TIME_TOO_LONG"</span>
+            
+        <span class="k">if</span> <span class="n">it_time</span> <span class="o">&lt;</span> <span class="mf">20.0</span><span class="p">:</span>
+            <span class="n">it_time</span> <span class="o">=</span> <span class="n">time_it</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">func2</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">case</span> <span class="o">=</span> <span class="s">"BOTH_TOO_LONG"</span>
+
+        <span class="k">if</span> <span class="n">case</span> <span class="o">==</span> <span class="s">"BOTH_FINE"</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"{:&gt;4} | {:&gt;14.8f} | {:&gt;14.8f}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">rec_time</span><span class="p">,</span> <span class="n">it_time</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">case</span> <span class="o">==</span> <span class="s">"REC_TIME_TOO_LONG"</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"{:&gt;4} | ---too long--- | {:&gt;14.8f}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">it_time</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">case</span> <span class="o">==</span> <span class="s">"BOTH_TOO_LONG"</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"{:&gt;4} | ---too long--- | ---too long---"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">rec_time</span><span class="p">,</span> <span class="n">it_time</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>We start with printing the headers of our three-columned table: <code class="highlighter-rouge">n</code>, <code class="highlighter-rouge">recursion</code> and <code class="highlighter-rouge">iteration</code>. For each number &lt; n we now print the time the two functions take for returning the result.
+At some point this takes really long, especially when using recursion, so we say: if the time <code class="highlighter-rouge">rec_time</code> or <code class="highlighter-rouge">it_time</code> reaches more than 20 seconds, for the next call we just print <code class="highlighter-rouge">"--- too long ---"</code>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">table</span><span class="p">(</span><span class="n">fib_recursion</span><span class="p">,</span> <span class="n">fib_iteration</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+
+<span class="c1">###############
+# Output:
+</span>
+<span class="c1">#   n |      recursion |      iteration
+# ----|----------------|---------------
+#   1 |     0.00000642 |     0.00000342
+#   2 |     0.00000855 |     0.00000513
+#   3 |     0.00001197 |     0.00000556
+#               ........
+#  33 |     4.85348655 |     0.00003336
+#  34 |     7.80146386 |     0.00003036
+#  35 |    12.98958323 |     0.00002266
+#  36 |    18.16303924 |     0.00002438
+#  37 |    33.10127890 |     0.00003763
+#  38 | ---too long--- |     0.00002053
+#               ........
+#  49 | ---too long--- |     0.00002395
+#  50 | ---too long--- |     0.00002480
+</span></code></pre></div></div>
+
+<p>And again, we can see that recursion is way slower than iteration.
+Below, the difference between these two methods become even more visible:</p>
+
+<p><img src="/assets/recursion_iteration_plot.png" alt="Recursion and Iteration" /></p>
+
+<p><img src="/assets/iteration_plot.png" alt="Iteration" /></p>
+
+<p>So if you want to get a certain number F<sub>n</sub>, I would highly recommend using iteration!</p>
+
+		    
+			
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+		/* if we're on localhost, detect it and manually patch	
+		* URL into the page.url and page.identifier variables
+		*/
+		if (window.location.href.match(/localhost/) !== "") {
+			const actual_base = "https://corinnabuerger.github.io";
+			const actual_url = actual_base + '/jekyll/update/2020/04/18/race_between_recursion_and_iteration/';
+			this.page.url = this.page.identifier = actual_url;
+		} else {
+			this.page.url = 'http://localhost:4000/jekyll/update/2020/04/18/race_between_recursion_and_iteration/';
+			this.page.identifier = 'http://localhost:4000/jekyll/update/2020/04/18/race_between_recursion_and_iteration/';
+		}
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://recursion-iteration.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+		    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <footer class="page-footer">
+    <div class="container">
+        <div class="columns">
+            <div class="column is-4">
+                <div class="content">
+                    <p>
+                        <small>
+                            <span>Powered by</span>
+                            <a target="_blank" href="http://jekyllrb.com/">Jekyll</a>
+                            <span> / Styled using </span>
+                            <a target="_blank" href="http://bulma.io/">Bulma</a>
+                        </small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="/js/script.js"></script>
+
+    
+</body>
+
+</html>

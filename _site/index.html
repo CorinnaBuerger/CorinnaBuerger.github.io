@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Home |  Python Implementations</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Corinna Buerger">
+    <meta name="description" content="A blog and a portfolio">
+    <meta name="google-site-verification" content="0Gn_dKXbiAVrD1a3RkOh52-_0BAByivvOS4hgT0h_Rw" />
+    <link rel="shortcut icon" type="image/png" href="http://via.placeholder.com/128x128">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Crimson+Text">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.2/css/bulma.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <nav class="nav">
+    <div class="container">
+        <div class="nav-left">
+            <a class="nav-item" href="/">
+                <span class="icon">
+                    <i class="fa fa-home"></i>
+                </span>
+            </a>
+        </div>
+
+        <div class="nav-center">
+            <a class="nav-item" target="_blank" href="https://www.github.com/CorinnaBuerger/">
+                <span class="icon">
+                    <i class="fa fa-github"></i>
+                </span>
+            </a>
+            <a class="nav-item" target="_blank" href="https://www.twitter.com/coco_beatle/">
+                <span class="icon">
+                    <i class="fa fa-twitter"></i>
+                </span>
+            </a>
+        </div>
+
+        <span class="nav-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+        </span>
+
+        <div class="nav-right nav-menu">
+            
+            <a class="nav-item" href="/portfolio/">
+                <span>Portfolio</span>
+            </a>
+            
+            <a class="nav-item" href="/about/">
+                <span>About</span>
+            </a>
+            
+        </div>
+
+</nav>
+    <section class="hero is-primary is-small">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <p class="title is-1">
+                My Python Adventures
+            </p>
+            <p class="subtitle is-4">
+	    <em>A Programmer's Website</em>
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column is-half is-offset-one-quarter">
+
+                
+                <div class="box">
+                    <article class="media">
+                        <div class="media-content">
+                            <div class="content">
+                                <a href="/jekyll/update/2020/10/14/covid_viewer/">
+                                    <p class="title is-2">Covid Viewer <span class="tag is-white is-pulled-right"><small>October 14, 2020</small></span></p>
+				    <p class="subtitle"><small>Welcome to my Covid Viewer!
+You can select any country in the world to be displayed in the plots below. 
+The gray bars in the background represent worldwide data. The selected country will be colored.
+</small></p>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="box">
+                    <article class="media">
+                        <div class="media-content">
+                            <div class="content">
+                                <a href="/jekyll/update/2020/05/09/turtle_paint/">
+                                    <p class="title is-2">Turtle-Paint <span class="tag is-white is-pulled-right"><small>May 09, 2020</small></span></p>
+				    <p class="subtitle"><small>Do you think Python Turtle is just for kids in order to introduce the Python language? Do you just use it for messing around? False!
+In this post, I will introduce the drawing program <strong>TurtlePaint</strong>. It was created using the Turtle module of Python 3.8. 
+It allows you to draw beautiful pictures by intuitively clicking on the screen, moving the turtle around with <code class="highlighter-rouge">h</code>, <code class="highlighter-rouge">j</code>, <code class="highlighter-rouge">k</code>, <code class="highlighter-rouge">l</code> or by simply dragging it with your mouse. Choose between different pencolors, fillcolors, pensizes and turtle shapes to get a perfect result! It is great for creating simple shapes or small drawings, but also to let your creativity run free!
+</small></p>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="box">
+                    <article class="media">
+                        <div class="media-content">
+                            <div class="content">
+                                <a href="/jekyll/update/2020/04/21/args_and_kwargs/">
+                                    <p class="title is-2">*args and **kwargs <span class="tag is-white is-pulled-right"><small>April 21, 2020</small></span></p>
+				    <p class="subtitle"><small>Have you ever wondered what’s behind the mysterious expressions <code class="highlighter-rouge">*args</code> and <code class="highlighter-rouge">**kwargs</code>?
+Usually they are used as function parameters, when you don’t know the amount of given arguments yet. Let’s say you want to define a function <code class="highlighter-rouge">mean</code> that returns the mean of all the numbers, that are passed to it. Surely, you want to create a function that can be applied for all amounts of numbers. In this case, you can use <code class="highlighter-rouge">*args</code> as a parameter.
+</small></p>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="box">
+                    <article class="media">
+                        <div class="media-content">
+                            <div class="content">
+                                <a href="/jekyll/update/2020/04/20/python_decorators/">
+                                    <p class="title is-2">Decorators in Python <span class="tag is-white is-pulled-right"><small>April 20, 2020</small></span></p>
+				    <p class="subtitle"><small>In my previous post we compaired iteration and recursion regarding their time required to get a certain Fibonacci number F<sub>n</sub>. To do this, we created a function <code class="highlighter-rouge">time_it</code> that simply calls each function a certain number of <code class="highlighter-rouge">times</code> and returns the time it took by calculating the difference between the time right before and after the function got called. You may say, it “wrappes” the called function.
+</small></p>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="box">
+                    <article class="media">
+                        <div class="media-content">
+                            <div class="content">
+                                <a href="/jekyll/update/2020/04/18/race_between_recursion_and_iteration/">
+                                    <p class="title is-2">Race between Recursion and Iteration <span class="tag is-white is-pulled-right"><small>April 18, 2020</small></span></p>
+				    <p class="subtitle"><small>Today I will compare two methods for getting a certain Fibonacci number F<sub>n</sub>: Recursion and Iteration.
+Both methods work fine but one of them is much faster than the other one.
+</small></p>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                
+
+            </div>
+        </div>
+    </div>
+</section>
+
+    <footer class="page-footer">
+    <div class="container">
+        <div class="columns">
+            <div class="column is-4">
+                <div class="content">
+                    <p>
+                        <small>
+                            <span>Powered by</span>
+                            <a target="_blank" href="http://jekyllrb.com/">Jekyll</a>
+                            <span> / Styled using </span>
+                            <a target="_blank" href="http://bulma.io/">Bulma</a>
+                        </small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="/js/script.js"></script>
+
+    
+</body>
+
+</html>
