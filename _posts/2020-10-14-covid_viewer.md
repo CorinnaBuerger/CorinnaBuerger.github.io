@@ -8,7 +8,7 @@ comments: true
 
 Welcome to my Covid Viewer!
 You can select any country in the world to be displayed in the plots below. 
-The gray bars in the background represent worldwide data. The selected country will be displayed in blue.
+The gray bars in the background represent worldwide data. The selected country will be colored.
 
 # Confirmed Infections 
 
