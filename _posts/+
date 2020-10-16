@@ -15,10 +15,10 @@ The gray bars in the background represent worldwide data. The selected country w
 The first plot gives information about the daily confirmed infections, the second one about the total ones.
 The countries in the selection menu are sorted by total infections in a descending order.
 
-<iframe src="/assets/infections.html"
+<iframe src="C:/Users/Corinna/Documents/website/_includes/infections.html"
     sandbox="allow-same-origin allow-scripts"
     width="100%"
-    height="1300"
+    height="600"
     scrolling="no"
     seamless="seamless"
     frameborder="0">
@@ -29,10 +29,10 @@ The countries in the selection menu are sorted by total infections in a descendi
 The first plot gives information about the daily death cases, the second one about the total ones.
 The countries in the selection menu are sorted by total death cases in a descending order.
 
-<iframe src="/assets/deaths.html"
+<iframe src="C:/Users/Corinna/Documents/website/_includes/deaths.html"
     sandbox="allow-same-origin allow-scripts"
     width="100%"
-    height="1300"
+    height="600"
     scrolling="no"
     seamless="seamless"
     frameborder="0">
