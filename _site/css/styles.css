@@ -3,6 +3,40 @@
   padding: 3rem 1.5rem 6rem;
 }
 
+.is-half {
+	width: 100%;
+	margin-left: 0%;
+}
+
+.column {
+	width: 100%;
+	margin-left: 0%;
+}
+
+.is-offset-one-quarter {
+	width: 100%;
+	margin-left: 0%;
+}
+
+@media (min-width: 768px) {
+	.is-half {
+		width: 100%;
+		margin-left: 0%;
+	}
+	
+	.column {
+		width: 100%;
+		margin-left: 0%;
+	}
+	
+	.is-offset-one-quarter {
+		width: 100%;
+		margin-left: 0%;
+	}
+			width: 60%; 
+			margin-left: 20%;
+}
+
 html {
   height: 100%;
 }
@@ -112,3 +146,4 @@ code.highlighter-rouge {
 .highlight .vg { color: #000000 } /* Name.Variable.Global */
 .highlight .vi { color: #000000 } /* Name.Variable.Instance */
 .highlight .il { color: #0000cf; font-weight: bold } /* Literal.Number.Integer.Long */
+

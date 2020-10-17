@@ -38,3 +38,4 @@ The countries in the selection menu are sorted by total death cases in a descend
     frameborder="0">
 </iframe>
 
+Data by <a href="https://github.com/CSSEGISandData/COVID-19" target="_blank">Johns Hopkins University Center for Systems Science and Engineering (JHU CSSE)</a>
