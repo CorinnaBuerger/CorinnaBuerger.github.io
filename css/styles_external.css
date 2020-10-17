@@ -4370,13 +4370,13 @@ label.panel-block:hover {
  -webkit-box-flex:0;
  -ms-flex:none;
  flex:none;
- width:75%
+ width:100%
 }
 .columns.is-mobile>.column.is-two-thirds {
  -webkit-box-flex:0;
  -ms-flex:none;
  flex:none;
- width:66.6666%
+ width:100%
 }
 .columns.is-mobile>.column.is-half {
  -webkit-box-flex:0;
@@ -4388,25 +4388,25 @@ label.panel-block:hover {
  -webkit-box-flex:0;
  -ms-flex:none;
  flex:none;
- width:33.3333%
+ width:100%
 }
 .columns.is-mobile>.column.is-one-quarter {
  -webkit-box-flex:0;
  -ms-flex:none;
  flex:none;
- width:25%
+ width:100%
 }
 .columns.is-mobile>.column.is-offset-three-quarters {
- margin-left:75%
+ margin-left:0%
 }
 .columns.is-mobile>.column.is-offset-two-thirds {
- margin-left:66.6666%
+ margin-left:0%
 }
 .columns.is-mobile>.column.is-offset-half {
- margin-left:50%
+ margin-left:0%
 }
 .columns.is-mobile>.column.is-offset-one-third {
- margin-left:33.3333%
+ margin-left:0%
 }
 .columns.is-mobile>.column.is-offset-one-quarter {
  margin-left:0%
@@ -4415,73 +4415,73 @@ label.panel-block:hover {
  -webkit-box-flex:0;
  -ms-flex:none;
  flex:none;
- width:8.33333%
+ width:100%
 }
 .columns.is-mobile>.column.is-offset-1 {
- margin-left:8.33333%
+ margin-left:0%
 }
 .columns.is-mobile>.column.is-2 {
  -webkit-box-flex:0;
  -ms-flex:none;
  flex:none;
- width:16.66667%
+ width:100%
 }
 .columns.is-mobile>.column.is-offset-2 {
- margin-left:16.66667%
+ margin-left:0%
 }
 .columns.is-mobile>.column.is-3 {
  -webkit-box-flex:0;
  -ms-flex:none;
  flex:none;
- width:25%
+ width:100%
 }
 .columns.is-mobile>.column.is-offset-3 {
- margin-left:25%
+ margin-left:0%
 }
 .columns.is-mobile>.column.is-4 {
  -webkit-box-flex:0;
  -ms-flex:none;
  flex:none;
- width:33.33333%
+ width:100%
 }
 .columns.is-mobile>.column.is-offset-4 {
- margin-left:33.33333%
+ margin-left:0%
 }
 .columns.is-mobile>.column.is-5 {
  -webkit-box-flex:0;
  -ms-flex:none;
  flex:none;
- width:41.66667%
+ width:100%
 }
 .columns.is-mobile>.column.is-offset-5 {
- margin-left:41.66667%
+ margin-left:0%
 }
 .columns.is-mobile>.column.is-6 {
  -webkit-box-flex:0;
  -ms-flex:none;
  flex:none;
- width:50%
+ width:100%
 }
 .columns.is-mobile>.column.is-offset-6 {
- margin-left:50%
+ margin-left:0%
 }
 .columns.is-mobile>.column.is-7 {
  -webkit-box-flex:0;
  -ms-flex:none;
  flex:none;
- width:58.33333%
+ width:100%
 }
 .columns.is-mobile>.column.is-offset-7 {
- margin-left:58.33333%
+ margin-left:0%
 }
 .columns.is-mobile>.column.is-8 {
  -webkit-box-flex:0;
  -ms-flex:none;
  flex:none;
- width:66.66667%
+ width:100%
 }
 .columns.is-mobile>.column.is-offset-8 {
- margin-left:66.66667%
+ margin-left:0%
 }
 .columns.is-mobile>.column.is-9 {
  -webkit-box-flex:0;
@@ -4490,25 +4490,25 @@ label.panel-block:hover {
  width:75%
 }
 .columns.is-mobile>.column.is-offset-9 {
- margin-left:75%
+ margin-left:0%
 }
 .columns.is-mobile>.column.is-10 {
  -webkit-box-flex:0;
  -ms-flex:none;
  flex:none;
- width:83.33333%
+ width:100%
 }
 .columns.is-mobile>.column.is-offset-10 {
- margin-left:83.33333%
+ margin-left:0%
 }
 .columns.is-mobile>.column.is-11 {
  -webkit-box-flex:0;
  -ms-flex:none;
  flex:none;
- width:91.66667%
+ width:100%
 }
 .columns.is-mobile>.column.is-offset-11 {
- margin-left:91.66667%
+ margin-left:0%
 }
 .columns.is-mobile>.column.is-12 {
  -webkit-box-flex:0;
@@ -4535,13 +4535,13 @@ label.panel-block:hover {
   -webkit-box-flex:0;
   -ms-flex:none;
   flex:none;
-  width:75%
+  width:100%
  }
  .column.is-two-thirds-mobile {
   -webkit-box-flex:0;
   -ms-flex:none;
   flex:none;
-  width:66.6666%
+  width:100%
  }
  .column.is-half-mobile {
   -webkit-box-flex:0;
@@ -4553,25 +4553,25 @@ label.panel-block:hover {
   -webkit-box-flex:0;
   -ms-flex:none;
   flex:none;
-  width:33.3333%
+  width:100%
  }
  .column.is-one-quarter-mobile {
   -webkit-box-flex:0;
   -ms-flex:none;
   flex:none;
-  width:25%
+  width:100%
  }
  .column.is-offset-three-quarters-mobile {
-  margin-left:75%
+  margin-left:0%
  }
  .column.is-offset-two-thirds-mobile {
-  margin-left:66.6666%
+  margin-left:0%
  }
  .column.is-offset-half-mobile {
-  margin-left:50%
+  margin-left:0%
  }
  .column.is-offset-one-third-mobile {
-  margin-left:33.3333%
+  margin-left:0%
  }
  .column.is-offset-one-quarter-mobile {
   margin-left:0%
@@ -4580,100 +4580,100 @@ label.panel-block:hover {
   -webkit-box-flex:0;
   -ms-flex:none;
   flex:none;
-  width:8.33333%
+  width:100%
  }
  .column.is-offset-1-mobile {
-  margin-left:8.33333%
+  margin-left:0%
  }
  .column.is-2-mobile {
   -webkit-box-flex:0;
   -ms-flex:none;
   flex:none;
-  width:16.66667%
+  width:100%
  }
  .column.is-offset-2-mobile {
-  margin-left:16.66667%
+  margin-left:0%
  }
  .column.is-3-mobile {
   -webkit-box-flex:0;
   -ms-flex:none;
   flex:none;
-  width:25%
+  width:100%
  }
  .column.is-offset-3-mobile {
-  margin-left:25%
+  margin-left:0%
  }
  .column.is-4-mobile {
   -webkit-box-flex:0;
   -ms-flex:none;
   flex:none;
-  width:33.33333%
+  width:100%
  }
  .column.is-offset-4-mobile {
-  margin-left:33.33333%
+  margin-left:0%
  }
  .column.is-5-mobile {
   -webkit-box-flex:0;
   -ms-flex:none;
   flex:none;
-  width:41.66667%
+  width:100%
  }
  .column.is-offset-5-mobile {
-  margin-left:41.66667%
+  margin-left:0%
  }
  .column.is-6-mobile {
   -webkit-box-flex:0;
   -ms-flex:none;
   flex:none;
-  width:50%
+  width:100%
  }
  .column.is-offset-6-mobile {
-  margin-left:50%
+  margin-left:0%
  }
  .column.is-7-mobile {
   -webkit-box-flex:0;
   -ms-flex:none;
   flex:none;
-  width:58.33333%
+  width:100%
  }
  .column.is-offset-7-mobile {
-  margin-left:58.33333%
+  margin-left:0%
  }
  .column.is-8-mobile {
   -webkit-box-flex:0;
   -ms-flex:none;
   flex:none;
-  width:66.66667%
+  width:100%
  }
  .column.is-offset-8-mobile {
-  margin-left:66.66667%
+  margin-left:0%
  }
  .column.is-9-mobile {
   -webkit-box-flex:0;
   -ms-flex:none;
   flex:none;
-  width:75%
+  width:100%
  }
  .column.is-offset-9-mobile {
-  margin-left:75%
+  margin-left:0%
  }
  .column.is-10-mobile {
   -webkit-box-flex:0;
   -ms-flex:none;
   flex:none;
-  width:83.33333%
+  width:100%
  }
  .column.is-offset-10-mobile {
-  margin-left:83.33333%
+  margin-left:0%
  }
  .column.is-11-mobile {
   -webkit-box-flex:0;
   -ms-flex:none;
   flex:none;
-  width:91.66667%
+  width:100%
  }
  .column.is-offset-11-mobile {
-  margin-left:91.66667%
+  margin-left:0%
  }
  .column.is-12-mobile {
   -webkit-box-flex:0;
