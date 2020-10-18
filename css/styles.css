@@ -3,6 +3,17 @@
   padding: 3rem 1.5rem 6rem;
 }
 
+@media (min-width: 769px) {
+	.plot {
+		width: 100%;
+	}
+
+@media (max-width: 768px) {
+	.plot {
+		width:50%;
+	}
+}
+
 .is-half {
 	width: 100%;
 	margin-left: 0%;
