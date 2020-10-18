@@ -204,7 +204,7 @@ table th {
 }
 @media screen and (max-width:768px) {
  .is-block-mobile {
-  display:block!important
+  display:inline-block!important
  }
 }
 @media screen and (min-width:769px),print {
@@ -246,7 +246,7 @@ table th {
  .is-flex-mobile {
   display:-webkit-box!important;
   display:-ms-flexbox!important;
-  display:flex!important
+  display:inline-block!important
  }
 }
 @media screen and (min-width:769px),print {
@@ -296,7 +296,7 @@ table th {
 }
 @media screen and (max-width:768px) {
  .is-inline-mobile {
-  display:inline!important
+  display:inline-block!important
  }
 }
 @media screen and (min-width:769px),print {
@@ -376,7 +376,7 @@ table th {
  .is-inline-flex-mobile {
   display:-webkit-inline-box!important;
   display:-ms-inline-flexbox!important;
-  display:inline-flex!important
+  display:inline-block!important
  }
 }
 @media screen and (min-width:769px),print {
@@ -3128,13 +3128,13 @@ input[type=submit].button {
 .level.is-mobile {
  display:-webkit-box;
  display:-ms-flexbox;
- display:flex
+ display:inline-block
 }
 .level.is-mobile .level-left,
 .level.is-mobile .level-right {
  display:-webkit-box;
  display:-ms-flexbox;
- display:flex
+ display:inline-block
 }
 .level.is-mobile .level-left+.level-right {
  margin-top:0
@@ -5267,7 +5267,7 @@ label.panel-block:hover {
 .columns.is-mobile {
  display:-webkit-box;
  display:-ms-flexbox;
- display:flex
+ display:inline-block
 }
 .columns.is-multiline {
  -ms-flex-wrap:wrap;
