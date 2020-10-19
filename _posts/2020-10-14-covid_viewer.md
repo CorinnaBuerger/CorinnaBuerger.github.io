@@ -19,7 +19,7 @@ The countries in the selection menu are sorted by total infections in a descendi
     sandbox="allow-same-origin allow-scripts"
     width="100%"
     height="1300"
-    scrolling="no"
+    scrolling="yes"
     seamless="seamless"
     frameborder="0">
 </iframe>
@@ -33,7 +33,7 @@ The countries in the selection menu are sorted by total death cases in a descend
     sandbox="allow-same-origin allow-scripts"
     width="100%"
     height="1300"
-    scrolling="no"
+    scrolling="yes"
     seamless="seamless"
     frameborder="0">
 </iframe>
