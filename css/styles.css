@@ -20,6 +20,11 @@
 }
 
 @media (min-width: 768px) {
+	.we-need-this-for-manip {
+		width: 320px!important;
+		height: 240px!important;
+	}
+
 	.is-half {
 		width: 100%;
 		margin-left: 0%;
