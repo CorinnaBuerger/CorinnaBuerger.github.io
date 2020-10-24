@@ -19,7 +19,7 @@
 	margin-left: 0%;
 }
 
-@media (min-width: 768px) {
+@media screen and (max-width: 768px) {
 	.we-need-this-for-manip {
 		width: 320px!important;
 		height: 240px!important;
