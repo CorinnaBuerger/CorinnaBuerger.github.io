@@ -202,6 +202,28 @@ table th {
 .is-block {
  display:block
 }
+@media screen and (max-width: 768px) {
+ .bk.we-need-this-for-manip {
+  width: 320px!important;
+  height: 240px!important;
+	}
+ #d_infections {
+  width: 320px!important;
+  height: 240px!important;
+	}
+ #d_deaths {
+  width: 320px!important;
+  height: 240px!important;
+	}
+ #t_infections {
+  width: 320px!important;
+  height: 240px!important;
+	}
+ #t_deaths {
+  width: 320px!important;
+  height: 240px!important;
+	}
+}
 @media screen and (max-width:768px) {
  .is-block-mobile {
   display:block!important

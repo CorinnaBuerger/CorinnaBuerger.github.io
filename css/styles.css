@@ -24,23 +24,6 @@
 		width: 320px!important;
 		height: 240px!important;
 	}
-
-	.is-half {
-		width: 100%;
-		margin-left: 0%;
-	}
-	
-	.column {
-		width: 100%;
-		margin-left: 0%;
-	}
-	
-	.is-offset-one-quarter {
-		width: 100%;
-		margin-left: 0%;
-	}
-			width: 60%; 
-			margin-left: 20%;
 }
 
 html {
