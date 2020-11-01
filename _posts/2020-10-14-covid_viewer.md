@@ -8,7 +8,6 @@ comments: true
 
 Welcome to my Covid Viewer!
 You can select any country in the world to be displayed in the plots below. 
-The gray bars in the background represent worldwide data. The selected country will be colored.
 
 You can use the following tools provided by bokeh:
 
@@ -32,7 +31,7 @@ The countries in the selection menu are sorted by total infections in a descendi
     sandbox="allow-same-origin allow-scripts"
     width="100%"
     height="1300"
-    scrolling="yes"
+    scrolling="no"
     seamless="seamless"
     frameborder="0">
 </iframe>
@@ -46,7 +45,7 @@ The countries in the selection menu are sorted by total death cases in a descend
     sandbox="allow-same-origin allow-scripts"
     width="100%"
     height="1300"
-    scrolling="yes"
+    scrolling="no"
     seamless="seamless"
     frameborder="0">
 </iframe>

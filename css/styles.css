@@ -21,9 +21,9 @@
 
 @media screen and (max-width: 768px) {
 
-	.we-need-this-for-manip {
-		width: 320px!important;
-		height: 240px!important;
+	iframe {
+		height: 630px!important;
+
 	}
 }
 
