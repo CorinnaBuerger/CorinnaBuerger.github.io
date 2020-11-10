@@ -30,7 +30,7 @@ The countries in the selection menu are sorted by total infections in a descendi
 <iframe class="plot" src="/assets/infections.html"
     sandbox="allow-same-origin allow-scripts"
     width="100%"
-    height="1300"
+    height="1900"
     scrolling="no"
     seamless="seamless"
     frameborder="0">
@@ -44,7 +44,7 @@ The countries in the selection menu are sorted by total death cases in a descend
 <iframe class="plot" src="/assets/deaths.html"
     sandbox="allow-same-origin allow-scripts"
     width="100%"
-    height="1300"
+    height="1900"
     scrolling="no"
     seamless="seamless"
     frameborder="0">
