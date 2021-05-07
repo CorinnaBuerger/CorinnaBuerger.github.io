@@ -13,9 +13,9 @@ You can use the following tools provided by bokeh:
 
 `Pan`: Move the plot by dragging it with your mouse. This tool is activated automatically.
 
-`Box Zoom`: Select a section of the plot on which you want to have a closer look. Before using this tool you have to select it on the right of the plot.
+`Box Zoom`: Select a section of the plot on which you want to have a closer look. Before using this tool you have to activate it in the toolbar on the right.
 
-`Wheel Zoom`: Use the mouse wheel to zoom into the area where your curser is currently set. Before using this tool you have to select in on the right of the plot.
+`Wheel Zoom`: Use the mouse wheel to zoom into the area where your curser is currently set. Before using this tool you have to activate it in the toolbar on the right.
 
 `Reset`: Click this tool to reset the view.
 
